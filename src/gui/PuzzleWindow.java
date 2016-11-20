@@ -3,20 +3,18 @@ package gui;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 
-/**
- * Created by przemek on 20.11.16.
- */
 public class PuzzleWindow {
 
     Scene scene;
     AnchorPane anchorPane;
-    Label label;
+    PuzzleBoard puzzleBoard;
 
     public PuzzleWindow() {
-        label = new Label("Hello");
         anchorPane = new AnchorPane();
-        anchorPane.getChildren().add(label);
+        puzzleBoard = new PuzzleBoard();
+        anchorPane.getChildren().add(puzzleBoard.getMainPane());
         scene = new Scene(anchorPane);
     }
 
