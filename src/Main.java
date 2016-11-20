@@ -1,7 +1,10 @@
 import gui.GuiRoot;
 import gui.MainMenu;
+import gui.PuzzleBoard;
+import gui.PuzzleWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
+import model.PuzzleBoardModel;
 
 public class Main extends Application{
 
@@ -15,6 +18,11 @@ public class Main extends Application{
     }
 
     public static void main(String[] args) {
+        PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel();
+        puzzleBoardModel.printBoard();
+        System.out.println();
+        puzzleBoardModel.changePlaces(2,5);
+        puzzleBoardModel.printBoard();
         launch(args);
     }
 }

@@ -4,19 +4,26 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import model.PuzzleBoardModel;
 
-public class PuzzleBoard {
+import java.util.Observable;
+import java.util.Observer;
+
+public class PuzzleBoard implements Observer {
     private static final int FIELD_DIMENSION = 60;
     AnchorPane mainPane;
     GridPane board;
+    PuzzleBoardModel puzzleBoardModel;
 
-    public PuzzleBoard() {
+    public PuzzleBoard(PuzzleBoardModel puzzleBoardModel) {
         mainPane = new AnchorPane();
-        board = generateBoard();
+        board = generateNewBoard();
         mainPane.getChildren().add(board);
+        this.puzzleBoardModel = puzzleBoardModel;
+        this.puzzleBoardModel.addObserver(this);
     }
 
-    private GridPane generateBoard() {
+    private GridPane generateNewBoard() {
         GridPane board = new GridPane();
         for (int i = 0 ; i < 3 ; i++) {
             for (int j = 0 ; j < 3 ; j++) {
@@ -30,6 +37,15 @@ public class PuzzleBoard {
             }
         }
         return board;
+    }
+
+    private void refreshBoard() {
+        board = generateNewBoard();
+    }
+
+    @Override
+    public void update(Observable observable, Object o) {
+
     }
 
     public AnchorPane getMainPane() {
