@@ -18,11 +18,11 @@ public class Main extends Application{
     }
 
     public static void main(String[] args) {
-        PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel();
-        puzzleBoardModel.printBoard();
-        System.out.println();
-        puzzleBoardModel.changePlaces(2,5);
-        puzzleBoardModel.printBoard();
+//        PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel();
+//        puzzleBoardModel.printBoard();
+//        System.out.println();
+//        puzzleBoardModel.changePlaces(2,5);
+//        puzzleBoardModel.printBoard();
         launch(args);
     }
 }

@@ -4,6 +4,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
+import model.Block;
+import model.GameModel;
 import model.PuzzleBoardModel;
 
 import java.util.Observable;
@@ -15,25 +17,27 @@ public class PuzzleBoard implements Observer {
     GridPane board;
     PuzzleBoardModel puzzleBoardModel;
 
-    public PuzzleBoard(PuzzleBoardModel puzzleBoardModel) {
+    public PuzzleBoard() {
+        puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
+        this.puzzleBoardModel.addObserver(this);
         mainPane = new AnchorPane();
         board = generateNewBoard();
         mainPane.getChildren().add(board);
-        this.puzzleBoardModel = puzzleBoardModel;
-        this.puzzleBoardModel.addObserver(this);
     }
 
     private GridPane generateNewBoard() {
         GridPane board = new GridPane();
-        for (int i = 0 ; i < 3 ; i++) {
-            for (int j = 0 ; j < 3 ; j++) {
+
+        Block[][] boardModel = puzzleBoardModel.getBoard();
+        for (Block [] blocks : boardModel) {
+            for (Block block : blocks) {
                 StackPane field = new StackPane();
                 field.setMinSize(FIELD_DIMENSION, FIELD_DIMENSION);
                 field.setStyle("-fx-border-color: black;");
-                Label number = new Label(Integer.toString(i + j + 2));
+                Label number = new Label(Integer.toString(block.getNumber()));
                 number.setStyle("-fx-font-size: 20");
                 field.getChildren().add(number);
-                board.add(field,i,j);
+                board.add(field,block.getPosition().getY(),block.getPosition().getX());
             }
         }
         return board;

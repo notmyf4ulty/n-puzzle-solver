@@ -33,8 +33,8 @@ public class PuzzleBoardModel extends Observable {
         Block block1 = findBlock(number1);
         Block block2 = findBlock(number2);
         if (block1 != null && block2 != null && block1.interchange(block2)) {
-            setChanged();
-            notifyAll();
+            this.setChanged();
+            this.notifyAll();
             return true;
         } else {
             return false;
