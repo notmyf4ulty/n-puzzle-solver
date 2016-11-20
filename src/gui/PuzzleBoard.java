@@ -19,7 +19,7 @@ public class PuzzleBoard implements Observer {
 
     public PuzzleBoard() {
         puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
-        this.puzzleBoardModel.addObserver(this);
+        puzzleBoardModel.addObserver(this);
         mainPane = new AnchorPane();
         board = generateNewBoard();
         mainPane.getChildren().add(board);
@@ -27,8 +27,8 @@ public class PuzzleBoard implements Observer {
 
     private GridPane generateNewBoard() {
         GridPane board = new GridPane();
-
         Block[][] boardModel = puzzleBoardModel.getBoard();
+        puzzleBoardModel.printBoard();
         for (Block [] blocks : boardModel) {
             for (Block block : blocks) {
                 StackPane field = new StackPane();
@@ -37,7 +37,7 @@ public class PuzzleBoard implements Observer {
                 Label number = new Label(Integer.toString(block.getNumber()));
                 number.setStyle("-fx-font-size: 20");
                 field.getChildren().add(number);
-                board.add(field,block.getPosition().getY(),block.getPosition().getX());
+                board.add(field,block.getPosition().getX(),block.getPosition().getY());
             }
         }
         return board;
@@ -49,7 +49,8 @@ public class PuzzleBoard implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-
+        System.out.println("Updatin.");
+        board = generateNewBoard();
     }
 
     public AnchorPane getMainPane() {

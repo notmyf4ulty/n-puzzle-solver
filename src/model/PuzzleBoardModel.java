@@ -19,7 +19,7 @@ public class PuzzleBoardModel extends Observable {
         Block [][] board = new Block[BOARD_DIMENSION][BOARD_DIMENSION];
         for (int i = 0 ; i < BOARD_DIMENSION ; i++) {
             for (int j = 0 ; j < BOARD_DIMENSION ; j++) {
-                int number = (i * 3) + j;
+                int number = i + (j * 3);
                 board[i][j] =
                         new Block(new Position(i,j),number);
             }
@@ -36,8 +36,8 @@ public class PuzzleBoardModel extends Observable {
         Block block2 = findBlock(number2);
         if (block1 != null && block2 != null && block1.interchange(block2)) {
             Platform.runLater(() -> {
-                this.setChanged();
-                this.notifyAll();
+                setChanged();
+                notifyObservers();
             });
             return true;
         } else {
