@@ -1,5 +1,7 @@
 package model;
 
+import javafx.application.Platform;
+
 import java.util.Observable;
 
 /**
@@ -33,8 +35,10 @@ public class PuzzleBoardModel extends Observable {
         Block block1 = findBlock(number1);
         Block block2 = findBlock(number2);
         if (block1 != null && block2 != null && block1.interchange(block2)) {
-            this.setChanged();
-            this.notifyAll();
+            Platform.runLater(() -> {
+                this.setChanged();
+                this.notifyAll();
+            });
             return true;
         } else {
             return false;
