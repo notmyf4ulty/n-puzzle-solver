@@ -1,13 +1,16 @@
 package gui;
 
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import model.Block;
 import model.GameModel;
+import model.Position;
 import model.PuzzleBoardModel;
 
+import java.lang.reflect.Field;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -31,26 +34,42 @@ public class PuzzleBoard implements Observer {
         puzzleBoardModel.printBoard();
         for (Block [] blocks : boardModel) {
             for (Block block : blocks) {
-                StackPane field = new StackPane();
-                field.setMinSize(FIELD_DIMENSION, FIELD_DIMENSION);
-                field.setStyle("-fx-border-color: black;");
-                Label number = new Label(Integer.toString(block.getNumber()));
-                number.setStyle("-fx-font-size: 20");
-                field.getChildren().add(number);
-                board.add(field,block.getPosition().getX(),block.getPosition().getY());
+                FieldPane fieldPane = new FieldPane(block.getNumber());
+                board.add(fieldPane,block.getPosition().getX(),block.getPosition().getY());
             }
         }
         return board;
     }
 
     private void refreshBoard() {
-        board = generateNewBoard();
+        Block[][] boardModel = puzzleBoardModel.getBoard();
+        for (Block[] blocks : boardModel) {
+            for (Block block : blocks) {
+                FieldPane fieldPane = getFieldPane(block.getPosition());
+                if (fieldPane != null) {
+                    fieldPane.setNumber(block.getNumber());
+                }
+            }
+        }
+    }
+
+    private FieldPane getFieldPane(Position position) {
+        int columnIndex = position.getX();
+        int rowIndex = position.getY();
+        for (Node node : board.getChildren()) {
+            if (GridPane.getRowIndex(node) == rowIndex &&
+                    GridPane.getColumnIndex(node) == columnIndex &&
+                    node.getClass().equals(FieldPane.class)) {
+                return (FieldPane) node;
+            }
+        }
+        return null;
     }
 
     @Override
     public void update(Observable observable, Object o) {
         System.out.println("Updatin.");
-        board = generateNewBoard();
+        refreshBoard();
     }
 
     public AnchorPane getMainPane() {

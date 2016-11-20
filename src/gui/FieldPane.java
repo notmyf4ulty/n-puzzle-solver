@@ -18,6 +18,11 @@ public class FieldPane extends StackPane {
         getChildren().add(numberLabel);
     }
 
+    public FieldPane(int number) {
+        this();
+        setNumber(number);
+    }
+
     public void setNumber(int number) {
         numberLabel.setText(Integer.toString(number));
     }
