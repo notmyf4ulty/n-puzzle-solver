@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 /**
  * Created by przemek on 20.11.16.
  */
@@ -23,6 +25,27 @@ public class Position {
         boolean isOneYDistance = Math.abs(this.y - position.y) == 1;
 
         return isOneXDistance && isYSame || isXSame && isOneYDistance;
+    }
+
+    public Position [] getNeighbouringPositions(int border) {
+        Position [] positions = new Position[4];
+        positions[0] = new Position(x + 1, y - 1);
+        positions[1] = new Position(x + 1, y + 1);
+        positions[2] = new Position(x - 1, y + 1);
+        positions[3] = new Position(x - 1, y - 1);
+
+        ArrayList<Position> candidatePositions = new ArrayList<>();
+
+        for (Position position : positions) {
+            if (position.getX() < border && position.getY() < border) {
+                candidatePositions.add(position);
+            }
+        }
+
+        Position [] candidatesPositionsArray = new Position [candidatePositions.size()];
+        candidatesPositionsArray = candidatePositions.toArray(candidatesPositionsArray);
+
+        return candidatesPositionsArray;
     }
 
     public int getX() {

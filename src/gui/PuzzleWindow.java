@@ -33,7 +33,7 @@ public class PuzzleWindow {
         hBox.getChildren().add(textField2);
         Button button = new Button("Click me");
         button.setOnAction(actionEvent ->
-            puzzleBoardModel.changePlaces(
+            puzzleBoardModel.changePlacesOnePosition(
                     Integer.parseInt(textField1.getText()),
                     Integer.parseInt(textField2.getText())
             ));

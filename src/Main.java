@@ -18,7 +18,7 @@ public class Main extends Application{
 //        PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel();
 //        puzzleBoardModel.printBoard();
 //        System.out.println();
-//        puzzleBoardModel.changePlaces(2,5);
+//        puzzleBoardModel.changePlacesOnePosition(2,5);
 //        puzzleBoardModel.printBoard();
         launch(args);
     }

@@ -32,7 +32,7 @@ public class PuzzleBoardModel extends Observable {
         return board;
     }
 
-    public boolean changePlaces(int number1, int number2) {
+    public boolean changePlacesOnePosition(int number1, int number2) {
         Block block1 = findBlock(number1);
         Block block2 = findBlock(number2);
         if (block1 != null && block2 != null && block1.interchangeOnePosition(block2)) {
@@ -45,6 +45,21 @@ public class PuzzleBoardModel extends Observable {
             return false;
         }
     }
+
+    public boolean changePlacesWithZero(int number1, int number2) {
+        Block block1 = findBlock(number1);
+        Block block2 = findBlock(number2);
+        if (block1 != null && block2 != null) {
+            block1.interchange(block2);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+//    private Block [] getNeighbouringBlocks(Block block) {
+//
+//    }
 
     private Block findBlock(int number) {
         for (int i = 0 ; i < BOARD_DIMENSION ; i++) {
