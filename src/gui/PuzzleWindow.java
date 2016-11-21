@@ -15,7 +15,7 @@ public class PuzzleWindow {
     AnchorPane anchorPane;
     VBox vBox;
     HBox hBox;
-    PuzzleBoard puzzleBoard;
+    PuzzleBoardView puzzleBoardView;
     PuzzleBoardModel puzzleBoardModel;
     TextField textField1;
     TextField textField2;
@@ -24,8 +24,8 @@ public class PuzzleWindow {
         vBox = new VBox();
         hBox = new HBox();
         anchorPane = new AnchorPane();
-        puzzleBoard = new PuzzleBoard();
-        anchorPane.getChildren().add(puzzleBoard.getMainPane());
+        puzzleBoardView = new PuzzleBoardView();
+        anchorPane.getChildren().add(puzzleBoardView.getMainPane());
         vBox.getChildren().add(anchorPane);
         textField1 = new TextField();
         textField2 = new TextField();

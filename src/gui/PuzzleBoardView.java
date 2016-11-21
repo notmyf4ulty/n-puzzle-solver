@@ -1,26 +1,22 @@
 package gui;
 
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import model.Block;
 import model.GameModel;
 import model.Position;
 import model.PuzzleBoardModel;
-
-import java.lang.reflect.Field;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class PuzzleBoard implements Observer {
-    private static final int FIELD_DIMENSION = 60;
+public class PuzzleBoardView implements Observer {
     AnchorPane mainPane;
     GridPane board;
     PuzzleBoardModel puzzleBoardModel;
 
-    public PuzzleBoard() {
+    public PuzzleBoardView() {
         puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
         puzzleBoardModel.addObserver(this);
         mainPane = new AnchorPane();
@@ -65,6 +61,7 @@ public class PuzzleBoard implements Observer {
         }
         return null;
     }
+
 
     @Override
     public void update(Observable observable, Object o) {

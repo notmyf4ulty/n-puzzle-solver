@@ -1,10 +1,7 @@
 import gui.GuiRoot;
 import gui.MainMenu;
-import gui.PuzzleBoard;
-import gui.PuzzleWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
-import model.PuzzleBoardModel;
 
 public class Main extends Application{
 

@@ -3,6 +3,7 @@ package model;
 import javafx.application.Platform;
 
 import java.util.Observable;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * Created by przemek on 20.11.16.
@@ -13,6 +14,7 @@ public class PuzzleBoardModel extends Observable {
 
     public PuzzleBoardModel() {
         board = generateBoard();
+        meshBoard();
     }
 
     private Block [][] generateBoard() {
@@ -20,8 +22,7 @@ public class PuzzleBoardModel extends Observable {
         for (int i = 0 ; i < BOARD_DIMENSION ; i++) {
             for (int j = 0 ; j < BOARD_DIMENSION ; j++) {
                 int number = i + (j * 3);
-                board[i][j] =
-                        new Block(new Position(i,j),number);
+                board[i][j] = new Block(new Position(i,j),number);
             }
         }
         return board;
@@ -34,7 +35,7 @@ public class PuzzleBoardModel extends Observable {
     public boolean changePlaces(int number1, int number2) {
         Block block1 = findBlock(number1);
         Block block2 = findBlock(number2);
-        if (block1 != null && block2 != null && block1.interchange(block2)) {
+        if (block1 != null && block2 != null && block1.interchangeOnePosition(block2)) {
             Platform.runLater(() -> {
                 setChanged();
                 notifyObservers();
@@ -54,6 +55,18 @@ public class PuzzleBoardModel extends Observable {
             }
         }
         return null;
+    }
+
+    private void meshBoard() {
+        for (int j = 0 ; j < 100 ; j++) {
+            int[] randomCoordinates = new int[4];
+            for (int i = 0; i < randomCoordinates.length; i++) {
+                randomCoordinates[i] = ThreadLocalRandom.current().nextInt(0, 3);
+            }
+            board[randomCoordinates[0]][randomCoordinates[1]]
+                    .interchange(board[randomCoordinates[2]][randomCoordinates[3]]);
+        }
+
     }
 
     public void printBoard() {
