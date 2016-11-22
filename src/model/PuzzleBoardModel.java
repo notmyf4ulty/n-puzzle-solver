@@ -32,17 +32,18 @@ public class PuzzleBoardModel extends Observable {
         return board;
     }
 
-    public boolean changePlacesOnePosition(int number1, int number2) {
+    public void changePlacesOnePosition(int number1, int number2) {
         Block block1 = findBlock(number1);
         Block block2 = findBlock(number2);
         if (block1 != null && block2 != null && block1.interchangeOnePosition(block2)) {
+            Block tempBlock = board[block1.getPosition().getX()][block1.getPosition().getY()];
+            board[block1.getPosition().getX()][block1.getPosition().getY()] =
+                    board[block2.getPosition().getX()][block2.getPosition().getY()];
+            board[block2.getPosition().getX()][block2.getPosition().getY()] = tempBlock;
             Platform.runLater(() -> {
                 setChanged();
                 notifyObservers();
             });
-            return true;
-        } else {
-            return false;
         }
     }
 

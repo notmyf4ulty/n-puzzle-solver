@@ -1,9 +1,9 @@
 package model;
 
 public class Block {
-    private final Position position;
+    private Position position;
     private Position targetPosition;
-    private int number;
+    private final int number;
 
     public Block(Position position, int number) {
         this.position = position;
@@ -21,21 +21,20 @@ public class Block {
     }
 
     public void interchange(Block block) {
-        int thisNumber = this.number;
-        this.number = block.getNumber();
-        block.setNumber(thisNumber);
+        Position thisPosition = new Position(this.position);
+        this.position = new Position(block.getPosition());
+        block.setPosition(thisPosition);
     }
 
     public Position getPosition() {
         return position;
     }
 
-    public int getNumber() {
-        return number;
+    public void setPosition(Position position) {
+        this.position = position;
     }
 
-
-    public void setNumber(int number) {
-        this.number = number;
+    public int getNumber() {
+        return number;
     }
 }
