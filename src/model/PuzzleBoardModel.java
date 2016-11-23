@@ -50,10 +50,10 @@ public class PuzzleBoardModel extends Observable {
             board[block1.getPosition().getX()][block1.getPosition().getY()] =
                     board[block2.getPosition().getX()][block2.getPosition().getY()];
             board[block2.getPosition().getX()][block2.getPosition().getY()] = tempBlock;
-            Platform.runLater(() -> {
-                setChanged();
-                notifyObservers();
-            });
+//            Platform.runLater(() -> {
+//                setChanged();
+//                notifyObservers();
+//            });
         }
 
     }
@@ -88,15 +88,15 @@ public class PuzzleBoardModel extends Observable {
     }
 
     private void meshBoard() {
-        for (int j = 0 ; j < 1 ; j++) {
-            int[] randomCoordinates = new int[4];
-            for (int i = 0; i < randomCoordinates.length; i++) {
-                randomCoordinates[i] = ThreadLocalRandom.current().nextInt(0, 3);
-            }
-            interchangeBlocks(board[randomCoordinates[0]][randomCoordinates[1]],
-                    board[randomCoordinates[2]][randomCoordinates[3]]);
-        }
-
+//        for (int j = 0 ; j < 1 ; j++) {
+//            int[] randomCoordinates = new int[4];
+//            for (int i = 0; i < randomCoordinates.length; i++) {
+//                randomCoordinates[i] = ThreadLocalRandom.current().nextInt(0, 3);
+//            }
+//            interchangeBlocks(board[randomCoordinates[0]][randomCoordinates[1]],
+//                    board[randomCoordinates[2]][randomCoordinates[3]]);
+//        }
+        interchangeBlocks(board[0][0],board[0][1]);
     }
 
     public void printBoard() {
