@@ -8,6 +8,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.GameModel;
 import model.PuzzleBoardModel;
+import model.algorithm.AStar;
 
 public class PuzzleWindow {
 
@@ -32,11 +33,18 @@ public class PuzzleWindow {
         hBox.getChildren().add(textField1);
         hBox.getChildren().add(textField2);
         Button button = new Button("Click me");
-        button.setOnAction(actionEvent ->
-            puzzleBoardModel.changePlacesOnePosition(
-                    Integer.parseInt(textField1.getText()),
-                    Integer.parseInt(textField2.getText())
-            ));
+        button.setOnAction(actionEvent -> {
+            AStar aStar = new AStar();
+            aStar.printPuzzle(puzzleBoardModel);
+            try {
+                puzzleBoardModel.changePlacesOnePosition(
+                        Integer.parseInt(textField1.getText()),
+                        Integer.parseInt(textField2.getText())
+                );
+            } catch (NumberFormatException e) {
+                System.out.println("Cannot convert field's text into number.");
+            }
+        });
         vBox.getChildren().add(hBox);
         vBox.getChildren().add(button);
         scene = new Scene(vBox);

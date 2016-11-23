@@ -29,15 +29,16 @@ public class Position {
 
     public Position [] getNeighbouringPositions(int border) {
         Position [] positions = new Position[4];
-        positions[0] = new Position(x + 1, y - 1);
-        positions[1] = new Position(x + 1, y + 1);
-        positions[2] = new Position(x - 1, y + 1);
-        positions[3] = new Position(x - 1, y - 1);
+        positions[0] = new Position(x, y - 1);
+        positions[1] = new Position(x, y + 1);
+        positions[2] = new Position(x - 1, y);
+        positions[3] = new Position(x + 1, y);
 
         ArrayList<Position> candidatePositions = new ArrayList<>();
 
         for (Position position : positions) {
-            if (position.getX() < border && position.getY() < border) {
+            if (position.getX() < border && position.getY() < border &&
+                    position.getX() >= 0 && position.getY() >= 0) {
                 candidatePositions.add(position);
             }
         }
@@ -46,6 +47,16 @@ public class Position {
         candidatesPositionsArray = candidatePositions.toArray(candidatesPositionsArray);
 
         return candidatesPositionsArray;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o.getClass().equals(this.getClass())) {
+            Position position = (Position) o;
+            return position.getX() == x && position.getY() == y;
+        } else {
+            return false;
+        }
     }
 
     public int getX() {

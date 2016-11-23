@@ -11,6 +11,12 @@ public class Block {
         this.number = number;
     }
 
+    public Block(Block block) {
+        this.position = new Position(block.getPosition());
+        this.targetPosition = new Position(block.getTargetPosition());
+        this.number = block.getNumber();
+    }
+
     public boolean interchangeOnePosition(Block block) {
         if (position.isOneUnitDistance(block.getPosition())) {
             interchange(block);
@@ -32,6 +38,10 @@ public class Block {
 
     public void setPosition(Position position) {
         this.position = position;
+    }
+
+    public Position getTargetPosition() {
+        return targetPosition;
     }
 
     public int getNumber() {
