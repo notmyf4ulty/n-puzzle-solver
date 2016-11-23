@@ -45,11 +45,13 @@ public class PuzzleBoardModel extends Observable {
     }
 
     public void interchangeBlocks(Block block1, Block block2) {
-        if (block1.interchangeOnePosition(block2)) {
-            Block tempBlock = board[block1.getPosition().getX()][block1.getPosition().getY()];
-            board[block1.getPosition().getX()][block1.getPosition().getY()] =
-                    board[block2.getPosition().getX()][block2.getPosition().getY()];
-            board[block2.getPosition().getX()][block2.getPosition().getY()] = tempBlock;
+        Block boardBlock1 = board[block1.getPosition().getX()][block1.getPosition().getY()];
+        Block boardBlock2 = board[block2.getPosition().getX()][block2.getPosition().getY()];
+        if (boardBlock1.interchangeOnePosition(boardBlock2)) {
+            board[boardBlock1.getPosition().getX()][boardBlock1.getPosition().getY()]
+                    = boardBlock1;
+            board[boardBlock2.getPosition().getX()][boardBlock2.getPosition().getY()]
+                    = boardBlock2;
 //            Platform.runLater(() -> {
 //                setChanged();
 //                notifyObservers();
@@ -97,6 +99,7 @@ public class PuzzleBoardModel extends Observable {
 //                    board[randomCoordinates[2]][randomCoordinates[3]]);
 //        }
         interchangeBlocks(board[0][0],board[0][1]);
+//        interchangeBlocks(board[0][0],board[1][0]);
     }
 
     public void printBoard() {
@@ -111,15 +114,32 @@ public class PuzzleBoardModel extends Observable {
 
     public PuzzleBoardModel getCopy() {
         PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel();
+        puzzleBoardModel.board = getCopyBoard();
+        puzzleBoardModel.emptyBlock = puzzleBoardModel.board[emptyBlock.getPosition().getX()][emptyBlock.getPosition().getY()];
+        return puzzleBoardModel;
+    }
+
+    public Block[][] getCopyBoard() {
         Block [][] copyBoard = new Block[BOARD_DIMENSION][BOARD_DIMENSION];
         for (int i = 0 ; i < BOARD_DIMENSION ; i++) {
             for (int j = 0 ; j < BOARD_DIMENSION ; j++) {
                 copyBoard[i][j] = new Block(board[i][j]);
             }
         }
-        puzzleBoardModel.board = copyBoard;
-        puzzleBoardModel.emptyBlock = puzzleBoardModel.board[emptyBlock.getPosition().getX()][emptyBlock.getPosition().getY()];
-        return puzzleBoardModel;
+        return copyBoard;
+    }
+
+    public Block getEmptyBlock() {
+        return new Block(emptyBlock);
+    }
+
+    public void setBoard(Block[][] board) {
+        this.board = board;
+        emptyBlock = findBlock(0);
+        Platform.runLater(() -> {
+            setChanged();
+            notifyObservers();
+        });
     }
 
     @Override

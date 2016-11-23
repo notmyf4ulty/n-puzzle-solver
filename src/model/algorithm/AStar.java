@@ -11,10 +11,12 @@ public class AStar {
 
     List<AlgNode> openList;
     List<AlgNode> closedList;
+    PuzzleBoardModel workedModel;
 
     public AStar(PuzzleBoardModel startPuzzleBoard) {
         openList = new ArrayList<>();
         closedList = new ArrayList<>();
+        workedModel = startPuzzleBoard;
         AlgNode startAlgNode = new AlgNode(startPuzzleBoard,new Heuristic(),0,null);
         openList.add(startAlgNode);
     }
@@ -25,7 +27,7 @@ public class AStar {
         }
     }
 
-    public void search() {
+    public PuzzleBoardModel search() {
         AlgNode currentAlgNode;
         while (!openList.isEmpty()) {
             currentAlgNode = getLowestFCostAlgNode();
@@ -33,6 +35,8 @@ public class AStar {
             if (currentAlgNode != null) {
                 if (currentAlgNode.isTargetConfiguration()) {
                     currentAlgNode.getPuzzleBoardModel().printBoard();
+                    System.out.println("Done");
+                    return currentAlgNode.getPuzzleBoardModel();
                 } else {
                     List<AlgNode> currentDescendants = currentAlgNode.generateDescendants();
                     if (currentDescendants != null) {
@@ -57,7 +61,7 @@ public class AStar {
                 }
             }
         }
-        System.out.println("Done");
+        return null;
     }
 
     private AlgNode getLowestFCostAlgNode() {

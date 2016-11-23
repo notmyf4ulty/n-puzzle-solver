@@ -35,7 +35,7 @@ public class PuzzleWindow {
         Button button = new Button("Click me");
         button.setOnAction(actionEvent -> {
             AStar aStar = new AStar(puzzleBoardModel);
-            aStar.search();
+            puzzleBoardModel.setBoard(aStar.search().getCopyBoard());
 //            aStar.printPuzzle(puzzleBoardModel);
 //            try {
 //                puzzleBoardModel.changePlacesOnePosition(
