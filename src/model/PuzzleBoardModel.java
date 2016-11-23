@@ -3,6 +3,7 @@ package model;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
 
+import java.util.Arrays;
 import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -87,7 +88,7 @@ public class PuzzleBoardModel extends Observable {
     }
 
     private void meshBoard() {
-        for (int j = 0 ; j < 100 ; j++) {
+        for (int j = 0 ; j < 1 ; j++) {
             int[] randomCoordinates = new int[4];
             for (int i = 0; i < randomCoordinates.length; i++) {
                 randomCoordinates[i] = ThreadLocalRandom.current().nextInt(0, 3);
@@ -119,5 +120,24 @@ public class PuzzleBoardModel extends Observable {
         puzzleBoardModel.board = copyBoard;
         puzzleBoardModel.emptyBlock = puzzleBoardModel.board[emptyBlock.getPosition().getX()][emptyBlock.getPosition().getY()];
         return puzzleBoardModel;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        PuzzleBoardModel that = (PuzzleBoardModel) o;
+
+        if (!Arrays.deepEquals(board, that.board)) return false;
+        return emptyBlock.equals(that.emptyBlock);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Arrays.deepHashCode(board);
+        result = 31 * result + emptyBlock.hashCode();
+        return result;
     }
 }

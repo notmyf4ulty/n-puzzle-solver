@@ -34,16 +34,17 @@ public class PuzzleWindow {
         hBox.getChildren().add(textField2);
         Button button = new Button("Click me");
         button.setOnAction(actionEvent -> {
-            AStar aStar = new AStar();
-            aStar.printPuzzle(puzzleBoardModel);
-            try {
-                puzzleBoardModel.changePlacesOnePosition(
-                        Integer.parseInt(textField1.getText()),
-                        Integer.parseInt(textField2.getText())
-                );
-            } catch (NumberFormatException e) {
-                System.out.println("Cannot convert field's text into number.");
-            }
+            AStar aStar = new AStar(puzzleBoardModel);
+            aStar.search();
+//            aStar.printPuzzle(puzzleBoardModel);
+//            try {
+//                puzzleBoardModel.changePlacesOnePosition(
+//                        Integer.parseInt(textField1.getText()),
+//                        Integer.parseInt(textField2.getText())
+//                );
+//            } catch (NumberFormatException e) {
+//                System.out.println("Cannot convert field's text into number.");
+//            }
         });
         vBox.getChildren().add(hBox);
         vBox.getChildren().add(button);

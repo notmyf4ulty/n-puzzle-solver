@@ -8,7 +8,7 @@ public class Heuristic {
         int cost = 0;
         for (Block [] blocks : puzzleBoardModel.getBoard()) {
             for (Block block : blocks) {
-                if (!block.getPosition().equals(block.getTargetPosition())) {
+                if (!block.isOnTargetPosition()) {
                     cost++;
                 }
             }

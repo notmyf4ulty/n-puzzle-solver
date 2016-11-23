@@ -59,6 +59,13 @@ public class Position {
         }
     }
 
+    @Override
+    public int hashCode() {
+        int result = x;
+        result = 31 * result + y;
+        return result;
+    }
+
     public int getX() {
         return x;
     }

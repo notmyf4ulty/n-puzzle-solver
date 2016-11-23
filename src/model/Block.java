@@ -32,6 +32,31 @@ public class Block {
         block.setPosition(thisPosition);
     }
 
+    public boolean isOnTargetPosition() {
+        return position.equals(targetPosition);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Block block = (Block) o;
+
+        if (number != block.number) return false;
+        if (!position.equals(block.position)) return false;
+        return targetPosition.equals(block.targetPosition);
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = position.hashCode();
+        result = 31 * result + targetPosition.hashCode();
+        result = 31 * result + number;
+        return result;
+    }
+
     public Position getPosition() {
         return position;
     }
