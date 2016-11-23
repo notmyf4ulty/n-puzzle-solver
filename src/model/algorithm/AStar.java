@@ -3,6 +3,7 @@ package model.algorithm;
 import model.Block;
 import model.PuzzleBoardModel;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -10,11 +11,13 @@ import java.util.Queue;
  */
 public class AStar {
 
-    Queue<PuzzleBoardModel> openList;
-    Queue<PuzzleBoardModel> closedList;
+    LinkedList<PuzzleBoardModel> openList;
+    LinkedList<PuzzleBoardModel> closedList;
 
-    public AStar() {
-
+    public AStar(PuzzleBoardModel startPuzzleBoard) {
+        openList = new LinkedList<>();
+        closedList = new LinkedList<>();
+        openList.push(startPuzzleBoard);
     }
 
     public void printPuzzle(PuzzleBoardModel startPuzzleBoard) {
@@ -23,6 +26,13 @@ public class AStar {
         }
     }
 
+    private void search() {
+        PuzzleBoardModel[] descendants = generateDescendants(openList.getFirst());
+        closedList.push(openList.pop());
+        for (PuzzleBoardModel descendant : descendants) {
+            
+        }
+    }
 
     private PuzzleBoardModel [] generateDescendants(PuzzleBoardModel parentPuzzleBoard) {
         Block[] blocks = parentPuzzleBoard.getEmptyBlockNeighbours();
