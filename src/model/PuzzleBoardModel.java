@@ -70,7 +70,7 @@ public class PuzzleBoardModel extends Observable {
         Position [] positions = blockPosition.getNeighbouringPositions(BOARD_DIMENSION);
         Block [] blocks = new Block[positions.length];
         for (int i = 0 ; i < positions.length ; i++) {
-            blocks[i] = board[positions[i].getX()][positions[i].getY()];
+            blocks[i] = new Block(board[positions[i].getX()][positions[i].getY()]);
         }
         return blocks;
     }
@@ -117,7 +117,7 @@ public class PuzzleBoardModel extends Observable {
             }
         }
         puzzleBoardModel.board = copyBoard;
-        puzzleBoardModel.emptyBlock = copyBoard[emptyBlock.getPosition().getX()][emptyBlock.getPosition().getY()];
+        puzzleBoardModel.emptyBlock = puzzleBoardModel.board[emptyBlock.getPosition().getX()][emptyBlock.getPosition().getY()];
         return puzzleBoardModel;
     }
 }

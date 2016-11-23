@@ -24,11 +24,11 @@ public class AStar {
     }
 
 
-    private PuzzleBoardModel [] generateDescendants(PuzzleBoardModel puzzleBoardModel) {
-        Block[] blocks = puzzleBoardModel.getEmptyBlockNeighbours();
+    private PuzzleBoardModel [] generateDescendants(PuzzleBoardModel parentPuzzleBoard) {
+        Block[] blocks = parentPuzzleBoard.getEmptyBlockNeighbours();
         PuzzleBoardModel[] puzzleBoardModels = new PuzzleBoardModel[blocks.length];
         for (int i = 0 ; i < blocks.length ; i++) {
-            PuzzleBoardModel descendant = puzzleBoardModel.getCopy();
+            PuzzleBoardModel descendant = parentPuzzleBoard.getCopy();
             descendant.interchangeEmptyBlock(blocks[i]);
             puzzleBoardModels[i] = descendant;
         }
