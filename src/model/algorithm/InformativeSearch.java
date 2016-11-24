@@ -1,18 +1,18 @@
 package model.algorithm;
 
-public abstract class InformativeSearch<T extends Node> {
+public abstract class InformativeSearch {
 
-    protected T rootNode;
-    protected T targetNode;
+    Node rootNode;
+    Node targetNode;
 
-    public InformativeSearch(T rootNode, T targetNode) {
+    public InformativeSearch(Node rootNode, Node targetNode) {
         this.rootNode = rootNode;
         this.targetNode = targetNode;
     }
 
-    abstract SearchStat search();
+    abstract SearchStat fullSearch();
 
-    boolean isTargetConfiguration() {
-        return rootNode.equals(targetNode);
+    boolean isTargetConfiguration(Node node) {
+        return node.equals(targetNode);
     }
 }

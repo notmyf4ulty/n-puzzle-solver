@@ -24,4 +24,8 @@ public abstract class Node {
     public int getfCost() {
         return fCost;
     }
+
+    public int getgCost() {
+        return gCost;
+    }
 }
