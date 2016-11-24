@@ -20,4 +20,8 @@ public abstract class Node {
     }
 
     abstract public List<Node> generateDescendants();
+
+    public int getfCost() {
+        return fCost;
+    }
 }

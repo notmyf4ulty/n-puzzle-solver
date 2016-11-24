@@ -1,7 +1,18 @@
 package model.algorithm;
 
-import java.util.List;
+public abstract class InformativeSearch<T extends Node> {
 
-public interface InformativeSearch<T extends Node> {
-    SearchStat search();
+    protected T rootNode;
+    protected T targetNode;
+
+    public InformativeSearch(T rootNode, T targetNode) {
+        this.rootNode = rootNode;
+        this.targetNode = targetNode;
+    }
+
+    abstract SearchStat search();
+
+    boolean isTargetConfiguration() {
+        return rootNode.equals(targetNode);
+    }
 }

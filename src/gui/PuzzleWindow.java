@@ -6,9 +6,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import model.algorithm.AStarSearch;
 import model.game.GameModel;
 import model.PuzzleBoardModel;
-import model.algorithm.AStar;
 
 public class PuzzleWindow {
 
@@ -34,9 +34,9 @@ public class PuzzleWindow {
         hBox.getChildren().add(textField2);
         Button button = new Button("Click me");
         button.setOnAction(actionEvent -> {
-            AStar aStar = new AStar(puzzleBoardModel);
-            puzzleBoardModel.setBoard(aStar.search().getCopyBoard());
-//            aStar.printPuzzle(puzzleBoardModel);
+            AStarSearch aStarSearch = new AStarSearch(puzzleBoardModel);
+            puzzleBoardModel.setBoard(aStarSearch.search().getCopyBoard());
+//            aStarSearch.printPuzzle(puzzleBoardModel);
 //            try {
 //                puzzleBoardModel.changePlacesOnePosition(
 //                        Integer.parseInt(textField1.getText()),
