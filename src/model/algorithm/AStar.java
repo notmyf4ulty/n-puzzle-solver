@@ -8,16 +8,16 @@ import java.util.List;
 
 public class AStar {
 
-    List<AlgNode> openList;
-    List<AlgNode> closedList;
+    List<AlgNodex> openList;
+    List<AlgNodex> closedList;
     PuzzleBoardModel workedModel;
 
     public AStar(PuzzleBoardModel startPuzzleBoard) {
         openList = new ArrayList<>();
         closedList = new ArrayList<>();
         workedModel = startPuzzleBoard;
-        AlgNode startAlgNode = new AlgNode(startPuzzleBoard,new ManhattanDistanceHeristic(),0,null);
-        openList.add(startAlgNode);
+        AlgNodex startAlgNodex = new AlgNodex(startPuzzleBoard,new ManhattanDistanceHeristic(),0,null);
+        openList.add(startAlgNodex);
     }
 
     public void printPuzzle(PuzzleBoardModel startPuzzleBoard) {
@@ -32,41 +32,41 @@ public class AStar {
 
     private void printOpenList() {
         System.out.println("Available moves:");
-        for (AlgNode algNode : openList) {
-            algNode.getPuzzleBoardModel().printBoard();
-            System.out.println("Cost: " + algNode.getfCost());
+        for (AlgNodex algNodex : openList) {
+            algNodex.getPuzzleBoardModel().printBoard();
+            System.out.println("Cost: " + algNodex.getfCost());
         }
     }
 
     public PuzzleBoardModel search() {
-        AlgNode currentAlgNode;
+        AlgNodex currentAlgNodex;
         while (!openList.isEmpty()) {
-            currentAlgNode = getLowestFCostAlgNode();
-            openList.remove(currentAlgNode);
-            closedList.add(currentAlgNode);
-            if (currentAlgNode != null) {
-                if (currentAlgNode.isTargetConfiguration()) {
-                    currentAlgNode.getPuzzleBoardModel().printBoard();
+            currentAlgNodex = getLowestFCostAlgNode();
+            openList.remove(currentAlgNodex);
+            closedList.add(currentAlgNodex);
+            if (currentAlgNodex != null) {
+                if (currentAlgNodex.isTargetConfiguration()) {
+                    currentAlgNodex.getPuzzleBoardModel().printBoard();
                     System.out.println("Done");
-                    return currentAlgNode.getPuzzleBoardModel();
+                    return currentAlgNodex.getPuzzleBoardModel();
                 } else {
-                    List<AlgNode> currentDescendants = currentAlgNode.generateDescendants();
+                    List<AlgNodex> currentDescendants = currentAlgNodex.generateDescendants();
                     if (currentDescendants != null) {
-                        for (AlgNode algNode : currentDescendants) {
-                            if (openList.contains(algNode)) {
-                                AlgNode containedAlgNode = openList.get(openList.indexOf(algNode));
-                                if (algNode.getgCost() < containedAlgNode.getgCost()) {
-                                    openList.remove(containedAlgNode);
-                                    openList.add(algNode);
+                        for (AlgNodex algNodex : currentDescendants) {
+                            if (openList.contains(algNodex)) {
+                                AlgNodex containedAlgNodex = openList.get(openList.indexOf(algNodex));
+                                if (algNodex.getgCost() < containedAlgNodex.getgCost()) {
+                                    openList.remove(containedAlgNodex);
+                                    openList.add(algNodex);
                                 }
-                            } else if (closedList.contains(algNode)) {
-                                AlgNode containedAlgNode = closedList.get(closedList.indexOf(algNode));
-                                if (algNode.getgCost() < containedAlgNode.getgCost()) {
-                                    closedList.remove(containedAlgNode);
-                                    openList.add(algNode);
+                            } else if (closedList.contains(algNodex)) {
+                                AlgNodex containedAlgNodex = closedList.get(closedList.indexOf(algNodex));
+                                if (algNodex.getgCost() < containedAlgNodex.getgCost()) {
+                                    closedList.remove(containedAlgNodex);
+                                    openList.add(algNodex);
                                 }
                             } else {
-                                openList.add(algNode);
+                                openList.add(algNodex);
                             }
                         }
                     }
@@ -76,15 +76,15 @@ public class AStar {
         return null;
     }
 
-    private AlgNode getLowestFCostAlgNode() {
+    private AlgNodex getLowestFCostAlgNode() {
         if (openList != null) {
-            AlgNode lowestFCostAlgNode = openList.get(0);
+            AlgNodex lowestFCostAlgNodex = openList.get(0);
             for (int i = 1; i < openList.size(); i++) {
-                if (openList.get(i).getfCost() < lowestFCostAlgNode.getfCost()) {
-                    lowestFCostAlgNode = openList.get(i);
+                if (openList.get(i).getfCost() < lowestFCostAlgNodex.getfCost()) {
+                    lowestFCostAlgNodex = openList.get(i);
                 }
             }
-            return lowestFCostAlgNode;
+            return lowestFCostAlgNodex;
         } else {
             return null;
         }

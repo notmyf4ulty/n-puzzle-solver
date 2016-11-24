@@ -6,15 +6,15 @@ import model.PuzzleBoardModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AlgNode {
+public class AlgNodex {
     private static final int TRAVEL_COST = 1;
     private PuzzleBoardModel puzzleBoardModel;
     private Heuristic heuristic;
     private int gCost;
     private int fCost;
-    private final AlgNode parent;
+    private final AlgNodex parent;
 
-    public AlgNode(PuzzleBoardModel puzzleBoardModel, Heuristic heuristic, int gCost, AlgNode parent) {
+    public AlgNodex(PuzzleBoardModel puzzleBoardModel, Heuristic heuristic, int gCost, AlgNodex parent) {
         this.puzzleBoardModel = puzzleBoardModel;
         this.heuristic = heuristic;
         this.gCost = gCost + TRAVEL_COST;
@@ -26,10 +26,10 @@ public class AlgNode {
         return gCost + heuristic.calculate(puzzleBoardModel);
     }
 
-    public List<AlgNode> generateDescendants() {
-        List<AlgNode> descendants = new ArrayList<>();
+    public List<AlgNodex> generateDescendants() {
+        List<AlgNodex> descendants = new ArrayList<>();
         for (PuzzleBoardModel puzzleBoardModel : generateDescendantPuzzleBoards(this.puzzleBoardModel)) {
-            descendants.add(new AlgNode(puzzleBoardModel, heuristic,gCost,this));
+            descendants.add(new AlgNodex(puzzleBoardModel, heuristic,gCost,this));
         }
         return descendants;
     }
@@ -61,9 +61,9 @@ public class AlgNode {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        AlgNode algNode = (AlgNode) o;
+        AlgNodex algNodex = (AlgNodex) o;
 
-        return puzzleBoardModel.equals(algNode.puzzleBoardModel);
+        return puzzleBoardModel.equals(algNodex.puzzleBoardModel);
 
     }
 
@@ -92,7 +92,7 @@ public class AlgNode {
         this.fCost = fCost;
     }
 
-    public AlgNode getParent() {
+    public AlgNodex getParent() {
         return parent;
     }
 }
