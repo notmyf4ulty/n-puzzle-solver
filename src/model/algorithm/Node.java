@@ -7,11 +7,11 @@ import java.util.List;
  */
 public abstract class Node {
 
-    int fCost;
-    int gCost;
-    int hCost;
-    Node parent;
-    Heuristic heuristic;
+    protected int fCost;
+    protected int gCost;
+    protected int hCost;
+    protected Node parent;
+    protected Heuristic heuristic;
 
     public Node(int gCost, Node parent, Heuristic heuristic) {
         this.gCost = gCost;
@@ -20,6 +20,7 @@ public abstract class Node {
     }
 
     abstract public List<Node> generateDescendants();
+    abstract public int calculateFCost();
 
     public int getfCost() {
         return fCost;

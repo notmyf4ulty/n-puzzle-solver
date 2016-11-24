@@ -39,8 +39,8 @@ public class AStar extends InformativeSearch {
                             closedList.add(descendantNode);
                         }
                     } else if (closedList.contains(descendantNode)) {
-                        Node conainedNode = closedList.get(closedList.indexOf(descendantNode));
-                        if (descendantNode.getgCost() < conainedNode.getgCost()) {
+                        Node containedNode = closedList.get(closedList.indexOf(descendantNode));
+                        if (descendantNode.getgCost() < containedNode.getgCost()) {
                             openList.add(descendantNode);
                         } else {
                             closedList.add(descendantNode);
