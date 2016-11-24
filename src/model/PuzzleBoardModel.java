@@ -98,8 +98,9 @@ public class PuzzleBoardModel extends Observable {
 //            interchangeBlocks(board[randomCoordinates[0]][randomCoordinates[1]],
 //                    board[randomCoordinates[2]][randomCoordinates[3]]);
 //        }
-        interchangeBlocks(board[0][0],board[0][1]);
-//        interchangeBlocks(board[0][0],board[1][0]);
+        interchangeBlocks(board[0][0],board[1][0]);
+        interchangeBlocks(board[1][0],board[2][0]);
+        interchangeBlocks(board[0][0],board[1][0]);
     }
 
     public void printBoard() {
@@ -109,7 +110,6 @@ public class PuzzleBoardModel extends Observable {
             }
             System.out.println();
         }
-        System.out.println();
     }
 
     public PuzzleBoardModel getCopy() {

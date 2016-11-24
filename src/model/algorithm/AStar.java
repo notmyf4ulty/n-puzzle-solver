@@ -22,8 +22,20 @@ public class AStar {
     }
 
     public void printPuzzle(PuzzleBoardModel startPuzzleBoard) {
+        System.out.println("--- Current choice ---");
+        startPuzzleBoard.printBoard();
+        System.out.println("--- Available moves ---");
         for (PuzzleBoardModel puzzleBoardModel : generateDescendants(startPuzzleBoard)) {
             puzzleBoardModel.printBoard();
+        }
+        System.out.println("---------");
+    }
+
+    private void printOpenList() {
+        System.out.println("Available moves:");
+        for (AlgNode algNode : openList) {
+            algNode.getPuzzleBoardModel().printBoard();
+            System.out.println("Cost: " + algNode.getfCost());
         }
     }
 
@@ -32,7 +44,9 @@ public class AStar {
         while (!openList.isEmpty()) {
             currentAlgNode = getLowestFCostAlgNode();
             openList.remove(currentAlgNode);
+            closedList.add(currentAlgNode);
             if (currentAlgNode != null) {
+//                printPuzzle(currentAlgNode.getPuzzleBoardModel());
                 if (currentAlgNode.isTargetConfiguration()) {
                     currentAlgNode.getPuzzleBoardModel().printBoard();
                     System.out.println("Done");

@@ -18,13 +18,13 @@ public class AlgNode {
     public AlgNode(PuzzleBoardModel puzzleBoardModel, Heuristic heuristic, int gCost, AlgNode parent) {
         this.puzzleBoardModel = puzzleBoardModel;
         this.heuristic = heuristic;
-        this.gCost = gCost;
+        this.gCost = gCost + TRAVEL_COST;
         this.fCost = computeFCost();
         this.parent = parent;
     }
 
     private int computeFCost() {
-        return gCost + TRAVEL_COST + heuristic.unorderedBlocks(puzzleBoardModel);
+        return gCost + heuristic.manhattanDistance(puzzleBoardModel);
     }
 
     public List<AlgNode> generateDescendants() {
