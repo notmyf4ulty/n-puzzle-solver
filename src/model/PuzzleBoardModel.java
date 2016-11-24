@@ -90,17 +90,10 @@ public class PuzzleBoardModel extends Observable {
     }
 
     private void meshBoard() {
-//        for (int j = 0 ; j < 1 ; j++) {
-//            int[] randomCoordinates = new int[4];
-//            for (int i = 0; i < randomCoordinates.length; i++) {
-//                randomCoordinates[i] = ThreadLocalRandom.current().nextInt(0, 3);
-//            }
-//            interchangeBlocks(board[randomCoordinates[0]][randomCoordinates[1]],
-//                    board[randomCoordinates[2]][randomCoordinates[3]]);
-//        }
-        interchangeBlocks(board[0][0],board[1][0]);
-        interchangeBlocks(board[1][0],board[2][0]);
-        interchangeBlocks(board[0][0],board[1][0]);
+        for (int j = 0 ; j < 10 ; j++) {
+            Block[] neighbours = getEmptyBlockNeighbours();
+            interchangeEmptyBlock(neighbours[ThreadLocalRandom.current().nextInt(0,neighbours.length)]);
+        }
     }
 
     public void printBoard() {

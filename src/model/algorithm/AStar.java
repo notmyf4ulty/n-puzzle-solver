@@ -46,7 +46,6 @@ public class AStar {
             openList.remove(currentAlgNode);
             closedList.add(currentAlgNode);
             if (currentAlgNode != null) {
-//                printPuzzle(currentAlgNode.getPuzzleBoardModel());
                 if (currentAlgNode.isTargetConfiguration()) {
                     currentAlgNode.getPuzzleBoardModel().printBoard();
                     System.out.println("Done");
