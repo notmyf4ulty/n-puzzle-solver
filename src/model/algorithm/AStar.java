@@ -4,7 +4,6 @@ import model.Block;
 import model.PuzzleBoardModel;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AStar {
@@ -17,7 +16,7 @@ public class AStar {
         openList = new ArrayList<>();
         closedList = new ArrayList<>();
         workedModel = startPuzzleBoard;
-        AlgNode startAlgNode = new AlgNode(startPuzzleBoard,new Heuristic(),0,null);
+        AlgNode startAlgNode = new AlgNode(startPuzzleBoard,new ManhattanDistanceHeristic(),0,null);
         openList.add(startAlgNode);
     }
 

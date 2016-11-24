@@ -4,12 +4,11 @@ import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import model.Block;
-import model.GameModel;
+import model.game.GameModel;
 import model.Position;
 import model.PuzzleBoardModel;
 import java.util.Observable;
 import java.util.Observer;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class PuzzleBoardView implements Observer {
     AnchorPane mainPane;

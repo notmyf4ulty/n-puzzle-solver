@@ -4,7 +4,6 @@ import model.Block;
 import model.PuzzleBoardModel;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class AlgNode {
@@ -24,13 +23,13 @@ public class AlgNode {
     }
 
     private int computeFCost() {
-        return gCost + heuristic.manhattanDistance(puzzleBoardModel);
+        return gCost + heuristic.calculate(puzzleBoardModel);
     }
 
     public List<AlgNode> generateDescendants() {
         List<AlgNode> descendants = new ArrayList<>();
         for (PuzzleBoardModel puzzleBoardModel : generateDescendantPuzzleBoards(this.puzzleBoardModel)) {
-            descendants.add(new AlgNode(puzzleBoardModel,heuristic,gCost,this));
+            descendants.add(new AlgNode(puzzleBoardModel, heuristic,gCost,this));
         }
         return descendants;
     }
