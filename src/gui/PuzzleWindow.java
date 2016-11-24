@@ -6,9 +6,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import model.algorithm.AStarSearch;
+import model.algorithm.*;
 import model.game.GameModel;
 import model.PuzzleBoardModel;
+import model.game.PuzzleBoardNode;
 
 public class PuzzleWindow {
 
@@ -18,6 +19,7 @@ public class PuzzleWindow {
     HBox hBox;
     PuzzleBoardView puzzleBoardView;
     PuzzleBoardModel puzzleBoardModel;
+    GameModel gameModel;
     TextField textField1;
     TextField textField2;
 
@@ -34,8 +36,13 @@ public class PuzzleWindow {
         hBox.getChildren().add(textField2);
         Button button = new Button("Click me");
         button.setOnAction(actionEvent -> {
-            AStarSearch aStarSearch = new AStarSearch(puzzleBoardModel);
-            puzzleBoardModel.setBoard(aStarSearch.search().getCopyBoard());
+            Node rootNode = new PuzzleBoardNode(puzzleBoardModel,0,null,new ManhattanDistanceHeristic());
+            Node targetNode =
+                    new PuzzleBoardNode(gameModel.getTargetPuzzleBoardModel(),0,null,new ManhattanDistanceHeristic());
+            InformativeSearch informativeSearch = new AStar(rootNode,targetNode);
+            puzzleBoardModel.setBoard(((PuzzleBoardNode) informativeSearch.fullSearch()).getPuzzleBoardModel().getCopyBoard());
+//            AStarSearch aStarSearch = new AStarSearch(puzzleBoardModel);
+//            puzzleBoardModel.setBoard(aStarSearch.search().getCopyBoard());
 //            aStarSearch.printPuzzle(puzzleBoardModel);
 //            try {
 //                puzzleBoardModel.changePlacesOnePosition(
@@ -49,7 +56,8 @@ public class PuzzleWindow {
         vBox.getChildren().add(hBox);
         vBox.getChildren().add(button);
         scene = new Scene(vBox);
-        puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
+        gameModel = GameModel.getInstance();
+        puzzleBoardModel = gameModel.getPuzzleBoardModel();
     }
 
     public Scene getScene() {

@@ -8,11 +8,14 @@ import model.PuzzleBoardModel;
 public class GameModel {
     private static GameModel instance = null;
     PuzzleBoardModel puzzleBoardModel;
+    PuzzleBoardModel targetPuzzleBoardModel;
     HeuristicType heuristicType;
     SearchType searchType;
 
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel();
+        targetPuzzleBoardModel = puzzleBoardModel.getCopy();
+        puzzleBoardModel.meshBoard();
     }
 
     public static GameModel getInstance() {
@@ -24,6 +27,10 @@ public class GameModel {
 
     public PuzzleBoardModel getPuzzleBoardModel() {
         return puzzleBoardModel;
+    }
+
+    public PuzzleBoardModel getTargetPuzzleBoardModel() {
+        return targetPuzzleBoardModel;
     }
 
     public HeuristicType getHeuristicType() {

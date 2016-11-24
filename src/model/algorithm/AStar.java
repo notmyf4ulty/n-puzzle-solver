@@ -18,15 +18,14 @@ public class AStar extends InformativeSearch {
     }
 
     @Override
-    SearchStat fullSearch() {
-        SearchStat searchStat = new SearchStat();
+    public Node fullSearch() {
         Node currentNode;
         while (!openList.isEmpty()) {
             currentNode = getLowestFCostAlgNode();
             openList.remove(currentNode);
             closedList.add(currentNode);
             if (isTargetConfiguration(currentNode)) {
-                return searchStat;
+                return currentNode;
             } else {
                 for (Node descendantNode : currentNode.generateDescendants()) {
                     if (openList.contains(descendantNode)) {

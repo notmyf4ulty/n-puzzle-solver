@@ -60,4 +60,8 @@ public class PuzzleBoardNode extends Node {
     public int hashCode() {
         return puzzleBoardModel.hashCode();
     }
+
+    public PuzzleBoardModel getPuzzleBoardModel() {
+        return puzzleBoardModel;
+    }
 }

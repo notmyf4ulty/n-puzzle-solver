@@ -18,7 +18,6 @@ public class PuzzleBoardModel extends Observable {
     public PuzzleBoardModel() {
         board = generateBoard();
         emptyBlock = board[0][0];
-        meshBoard();
     }
 
     private Block [][] generateBoard() {
@@ -89,11 +88,15 @@ public class PuzzleBoardModel extends Observable {
         return null;
     }
 
-    private void meshBoard() {
-        for (int j = 0 ; j < 100 ; j++) {
+    public void meshBoard() {
+        for (int j = 0 ; j < 1000 ; j++) {
             Block[] neighbours = getEmptyBlockNeighbours();
             interchangeEmptyBlock(neighbours[ThreadLocalRandom.current().nextInt(0,neighbours.length)]);
         }
+        Platform.runLater(() -> {
+            setChanged();
+            notifyObservers();
+        });
     }
 
     public void printBoard() {
