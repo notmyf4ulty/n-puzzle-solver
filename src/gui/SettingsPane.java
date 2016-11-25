@@ -17,6 +17,7 @@ public class SettingsPane extends HBox {
     VBox searchTypeRadioGroupPane;
     VBox heuristicTypeRadioGroupPane;
     VBox meshLevelRadioGroupPane;
+
     GameModel gameModel;
 
     public SettingsPane() {

@@ -9,8 +9,10 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
         GuiRoot guiRoot = GuiRoot.getInstance();
         guiRoot.getMainStage().setTitle("N Puzzle Solver");
-        MainMenu mainMenu = new MainMenu();
-        guiRoot.getMainStage().setScene(mainMenu.getScene());
+//        MainMenu mainMenu = new MainMenu();
+//        guiRoot.getMainStage().setScene(mainMenu.getScene());
+        guiRoot.getRootPane().getChildren().clear();
+        guiRoot.getRootPane().getChildren().add(new MainMenu());
         guiRoot.getMainStage().show();
     }
 

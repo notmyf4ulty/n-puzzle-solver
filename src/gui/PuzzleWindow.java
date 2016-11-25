@@ -8,13 +8,10 @@ import javafx.scene.layout.VBox;
 import model.game.GameModel;
 import model.PuzzleBoardModel;
 
-public class PuzzleWindow {
+public class PuzzleWindow extends HBox {
 
-    Scene scene;
     AnchorPane puzzleBoardPane;
-    HBox mainPane;
-    VBox vBox;
-    HBox hBox;
+    VBox puzzlePane;
     PuzzleBoardGrid puzzleBoardGrid;
     PuzzleBoardModel puzzleBoardModel;
     GameModel gameModel;
@@ -22,18 +19,16 @@ public class PuzzleWindow {
     Button meshButton;
 
     public PuzzleWindow() {
-        mainPane = new HBox();
-        vBox = new VBox();
+        puzzlePane = new VBox();
         puzzleBoardPane = new AnchorPane();
         puzzleBoardPane.getChildren().add(new PuzzleBoardGrid().getMainPane());
         solveButton = createSolveButton();
         meshButton = createMeshButton();
-        vBox.getChildren().add(puzzleBoardPane);
-        vBox.getChildren().add(solveButton);
-        vBox.getChildren().add(meshButton);
-        mainPane.getChildren().add(vBox);
-        mainPane.getChildren().add(new SettingsPane());
-        scene = new Scene(mainPane);
+        puzzlePane.getChildren().add(puzzleBoardPane);
+        puzzlePane.getChildren().add(solveButton);
+        puzzlePane.getChildren().add(meshButton);
+        getChildren().add(puzzlePane);
+        getChildren().add(new SettingsPane());
         gameModel = GameModel.getInstance();
         puzzleBoardModel = gameModel.getPuzzleBoardModel();
     }
@@ -48,9 +43,5 @@ public class PuzzleWindow {
         Button button = new Button("Mesh");
         button.setOnAction(actionEvent -> gameModel.mesh());
         return button;
-    }
-
-    public Scene getScene() {
-        return scene;
     }
 }

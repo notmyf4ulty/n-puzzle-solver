@@ -7,20 +7,17 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.RowConstraints;
 
-public class MainMenu {
+public class MainMenu extends AnchorPane {
 
     private static final int SCENE_WIDTH = 300;
     private static final int SCENE_HEIGHT = 300;
 
-    private Scene scene;
-    private AnchorPane mainPane;
     private GridPane buttonsPane;
     private Button startButton;
     private Button settingsButton;
     private Button exitButton;
 
     public MainMenu() {
-        mainPane = new AnchorPane();
         buttonsPane = new GridPane();
         startButton = new Button("Start");
         settingsButton = new Button("Settings");
@@ -29,7 +26,7 @@ public class MainMenu {
         buttonsPane.add(startButton,0,0);
         buttonsPane.add(settingsButton,0,1);
         buttonsPane.add(exitButton,0,2);
-        mainPane.getChildren().add(buttonsPane);
+        getChildren().add(buttonsPane);
 
         AnchorPane.setTopAnchor(buttonsPane,10.0);
         AnchorPane.setRightAnchor(buttonsPane,10.0);
@@ -43,21 +40,13 @@ public class MainMenu {
         settingsButton.setMaxWidth(Double.MAX_VALUE);
         exitButton.setMaxWidth(Double.MAX_VALUE);
 
-        scene = new Scene(mainPane);
-
         startButton.setOnAction(actionEvent -> {
-            PuzzleWindow puzzleWindow = new PuzzleWindow();
-            GuiRoot.getInstance().getMainStage().setScene(puzzleWindow.getScene());
+            GuiRoot.getInstance().getRootPane().getChildren().clear();
+            GuiRoot.getInstance().getRootPane().getChildren().add(new PuzzleWindow());
+            GuiRoot.getInstance().getMainStage().sizeToScene();
         });
     }
 
-    public Scene getScene() {
-        return scene;
-    }
-
-    public AnchorPane getMainPane() {
-        return mainPane;
-    }
 
     public GridPane getButtonsPane() {
         return buttonsPane;

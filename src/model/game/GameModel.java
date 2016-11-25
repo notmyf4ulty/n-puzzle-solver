@@ -13,6 +13,8 @@ public class GameModel {
     HeuristicType heuristicType;
     SearchType searchType;
     MeshLevel meshLevel;
+    SolveType solveType;
+    MeshType meshType;
 
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel();
@@ -116,5 +118,21 @@ public class GameModel {
 
     public void setMeshLevel(MeshLevel meshLevel) {
         this.meshLevel = meshLevel;
+    }
+
+    public SolveType getSolveType() {
+        return solveType;
+    }
+
+    public void setSolveType(SolveType solveType) {
+        this.solveType = solveType;
+    }
+
+    public MeshType getMeshType() {
+        return meshType;
+    }
+
+    public void setMeshType(MeshType meshType) {
+        this.meshType = meshType;
     }
 }
