@@ -88,8 +88,8 @@ public class PuzzleBoardModel extends Observable {
         return null;
     }
 
-    public void meshBoard() {
-        for (int j = 0 ; j < 1000 ; j++) {
+    public void meshBoard(int meshIterations) {
+        for (int j = 0 ; j < meshIterations ; j++) {
             Block[] neighbours = getEmptyBlockNeighbours();
             interchangeEmptyBlock(neighbours[ThreadLocalRandom.current().nextInt(0,neighbours.length)]);
         }

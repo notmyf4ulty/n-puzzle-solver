@@ -9,20 +9,24 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.game.GameModel;
 import model.game.HeuristicType;
+import model.game.MeshLevel;
 import model.game.SearchType;
 
 public class SettingsPane extends HBox {
 
     VBox searchTypeRadioGroupPane;
     VBox heuristicTypeRadioGroupPane;
+    VBox meshLevelRadioGroupPane;
     GameModel gameModel;
 
     public SettingsPane() {
         gameModel = GameModel.getInstance();
         searchTypeRadioGroupPane = createSearchTypeRadioGroupPane();
         heuristicTypeRadioGroupPane = createHeuristicTypeRadioGroupPane();
+        meshLevelRadioGroupPane = createMeshLevelRadioGroupPane();
         getChildren().add(searchTypeRadioGroupPane);
         getChildren().add(heuristicTypeRadioGroupPane);
+        getChildren().add(meshLevelRadioGroupPane);
     }
 
     private VBox createSearchTypeRadioGroupPane() {
@@ -83,5 +87,39 @@ public class SettingsPane extends HBox {
         heuristicTypeRadioGroupPane.getChildren().add(manhattanDistanceChoice);
 
         return heuristicTypeRadioGroupPane;
+    }
+
+    private VBox createMeshLevelRadioGroupPane() {
+        VBox meshLevelRadioGroupPane = new VBox();
+        ToggleGroup toggleGroup = new ToggleGroup();
+        RadioButton lowChoice = new RadioButton("Niski");
+        lowChoice.setToggleGroup(toggleGroup);
+        lowChoice.setSelected(true);
+        RadioButton mediumChoice = new RadioButton("Średni");
+        mediumChoice.setToggleGroup(toggleGroup);
+        RadioButton highChoice = new RadioButton("Duży");
+        highChoice.setToggleGroup(toggleGroup);
+
+        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
+            @Override
+            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
+                RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+                switch (selectedRadioButton.getText()) {
+                    case "Niski":
+                        gameModel.setMeshLevel(MeshLevel.LOW);
+                        break;
+                    case "Średni":
+                        gameModel.setMeshLevel(MeshLevel.MEDIUM);
+                        break;
+                    case "Duży":
+                        gameModel.setMeshLevel(MeshLevel.HIGH);
+                }
+            }
+        });
+        meshLevelRadioGroupPane.getChildren().add(lowChoice);
+        meshLevelRadioGroupPane.getChildren().add(mediumChoice);
+        meshLevelRadioGroupPane.getChildren().add(highChoice);
+
+        return meshLevelRadioGroupPane;
     }
 }

@@ -12,13 +12,14 @@ public class GameModel {
     PuzzleBoardModel targetPuzzleBoardModel;
     HeuristicType heuristicType;
     SearchType searchType;
+    MeshLevel meshLevel;
 
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel();
         targetPuzzleBoardModel = puzzleBoardModel.getCopy();
-        puzzleBoardModel.meshBoard();
         heuristicType = HeuristicType.UNORDERED_BLOCKS;
         searchType = SearchType.A_STAR;
+        meshLevel = MeshLevel.LOW;
     }
 
     public static GameModel getInstance() {
@@ -52,9 +53,9 @@ public class GameModel {
             case A_STAR:
                 informativeSearch = new AStar(rootNode,targetNode);
                 break;
-//            case IDA_STAR:
-//                informativeSearch = new IdaStar(rootNode,targetNode);
-//                break;
+            case IDA_STAR:
+                informativeSearch = new IdaStar(rootNode,targetNode);
+                break;
             default:
                 informativeSearch = new AStar(rootNode,targetNode);
                 break;
@@ -64,6 +65,25 @@ public class GameModel {
         if (informativeSearchResultNode != null) {
             puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
         }
+    }
+
+    public void mesh() {
+        int meshIterations;
+        switch (meshLevel) {
+            case LOW:
+                meshIterations = 10;
+                break;
+            case MEDIUM:
+                meshIterations = 100;
+                break;
+            case HIGH:
+                meshIterations = 1000;
+                break;
+            default:
+                meshIterations = 10;
+                break;
+        }
+        puzzleBoardModel.meshBoard(meshIterations);
     }
 
     public PuzzleBoardModel getPuzzleBoardModel() {
@@ -88,5 +108,13 @@ public class GameModel {
 
     public void setSearchType(SearchType searchType) {
         this.searchType = searchType;
+    }
+
+    public MeshLevel getMeshLevel() {
+        return meshLevel;
+    }
+
+    public void setMeshLevel(MeshLevel meshLevel) {
+        this.meshLevel = meshLevel;
     }
 }

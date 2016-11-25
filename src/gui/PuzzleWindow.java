@@ -19,6 +19,7 @@ public class PuzzleWindow {
     PuzzleBoardModel puzzleBoardModel;
     GameModel gameModel;
     Button solveButton;
+    Button meshButton;
 
     public PuzzleWindow() {
         mainPane = new HBox();
@@ -26,8 +27,10 @@ public class PuzzleWindow {
         puzzleBoardPane = new AnchorPane();
         puzzleBoardPane.getChildren().add(new PuzzleBoardGrid().getMainPane());
         solveButton = createSolveButton();
+        meshButton = createMeshButton();
         vBox.getChildren().add(puzzleBoardPane);
         vBox.getChildren().add(solveButton);
+        vBox.getChildren().add(meshButton);
         mainPane.getChildren().add(vBox);
         mainPane.getChildren().add(new SettingsPane());
         scene = new Scene(mainPane);
@@ -38,6 +41,12 @@ public class PuzzleWindow {
     private Button createSolveButton() {
         Button button = new Button("Click me");
         button.setOnAction(actionEvent -> gameModel.solvePuzzle());
+        return button;
+    }
+
+    private Button createMeshButton() {
+        Button button = new Button("Mesh");
+        button.setOnAction(actionEvent -> gameModel.mesh());
         return button;
     }
 

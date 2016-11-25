@@ -23,8 +23,7 @@ public class IdaStar extends InformativeSearch{
         do {
             resultNode = depthFirstSearch(rootNode, limit);
             limit = resultNode.getfCost();
-            System.out.println(limit);
-        } while (!isTargetConfiguration(resultNode) && (limit < 100));
+        } while (!isTargetConfiguration(resultNode) && (limit < 10000));
         return resultNode;
     }
 
