@@ -22,32 +22,45 @@ public class IdaStar extends InformativeSearch{
         Node resultNode;
         do {
             resultNode = depthFirstSearch(rootNode, limit);
-            limit = resultNode.getfCost();
+            int newLimit = resultNode.getfCost();
+            if (newLimit > limit) {
+                limit = newLimit;
+            }
         } while (!isTargetConfiguration(resultNode) && (limit < 10000));
         return resultNode;
     }
 
     private Node depthFirstSearch(Node rootNode, int limit) {
-        Node lowestFCostAboveLimitNode = rootNode;
+        Node lowestFCostAboveLimitNode = null;
         List<Node> descendants = rootNode.generateDescendants();
         if (!descendants.isEmpty()) {
             for (Node descendant : descendants) {
+                Node lastDescendatsDescendant = descendant;
                 if (descendant.getfCost() <= limit) {
                     if (isTargetConfiguration(descendant)) {
                         return descendant;
                     } else {
-                        return depthFirstSearch(descendant, limit);
+                        lastDescendatsDescendant = depthFirstSearch(descendant, limit);
+                        if (isTargetConfiguration(lastDescendatsDescendant)) {
+                            return lastDescendatsDescendant;
+                        }
                     }
-                } else if (lowestFCostAboveLimitNode.equals(rootNode) ||
-                        (lowestFCostAboveLimitNode.getfCost() >= descendant.getfCost())) {
-                    lowestFCostAboveLimitNode = descendant;
+                } else {
+                    if ((lowestFCostAboveLimitNode == null) ||
+                            (lastDescendatsDescendant.getfCost() < lowestFCostAboveLimitNode.getfCost())) {
+                        lowestFCostAboveLimitNode = lastDescendatsDescendant;
+                    }
+                }
+                if (lastDescendatsDescendant.getfCost() > limit) {
+                    if ((lowestFCostAboveLimitNode == null) ||
+                            lastDescendatsDescendant.getfCost() < lowestFCostAboveLimitNode.getfCost()) {
+                        lowestFCostAboveLimitNode = lastDescendatsDescendant;
+                    }
                 }
             }
             return lowestFCostAboveLimitNode;
-        } else if (isTargetConfiguration(rootNode)) {
-            return rootNode;
         } else {
-            return lowestFCostAboveLimitNode;
+            return rootNode;
         }
     }
 
