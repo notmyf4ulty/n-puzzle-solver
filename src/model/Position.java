@@ -37,8 +37,7 @@ public class Position {
         ArrayList<Position> candidatePositions = new ArrayList<>();
 
         for (Position position : positions) {
-            if (position.getX() < border && position.getY() < border &&
-                    position.getX() >= 0 && position.getY() >= 0) {
+            if (validatePosition(position, border)) {
                 candidatePositions.add(position);
             }
         }
@@ -47,6 +46,15 @@ public class Position {
         candidatesPositionsArray = candidatePositions.toArray(candidatesPositionsArray);
 
         return candidatesPositionsArray;
+    }
+
+    public static boolean validatePosition(Position position, int border) {
+        if (position.getX() < border && position.getY() < border &&
+                position.getX() >= 0 && position.getY() >= 0) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override

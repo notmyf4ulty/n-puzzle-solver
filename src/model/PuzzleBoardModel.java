@@ -59,6 +59,37 @@ public class PuzzleBoardModel extends Observable {
 
     }
 
+
+    public void moveEmptyBlockUp() {
+        Position newPosition = new Position(emptyBlock.getPosition().getX(),emptyBlock.getPosition().getY() - 1);
+        interchangEmptyBlockByPosition(newPosition);
+    }
+
+    public void moveEmptyBlockRight() {
+        Position newPosition = new Position(emptyBlock.getPosition().getX() + 1,emptyBlock.getPosition().getY());
+        interchangEmptyBlockByPosition(newPosition);
+    }
+
+    public void moveEmptyBlockBottom() {
+        Position newPosition = new Position(emptyBlock.getPosition().getX(),emptyBlock.getPosition().getY() + 1);
+        interchangEmptyBlockByPosition(newPosition);
+    }
+
+    public void moveEmptyBlockLeft() {
+        Position newPosition = new Position(emptyBlock.getPosition().getX() - 1,emptyBlock.getPosition().getY());
+        interchangEmptyBlockByPosition(newPosition);
+    }
+
+    private void interchangEmptyBlockByPosition(Position position) {
+        if (Position.validatePosition(position,BOARD_DIMENSION)) {
+            interchangeEmptyBlock(board[position.getX()][position.getY()]);
+            Platform.runLater(() -> {
+                setChanged();
+                notifyObservers();
+            });
+        }
+    }
+
     public void interchangeEmptyBlock(Block block) {
         interchangeBlocks(emptyBlock,block);
     }

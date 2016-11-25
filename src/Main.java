@@ -1,5 +1,6 @@
 import gui.GuiRoot;
 import gui.MainMenu;
+import gui.PuzzleWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -9,19 +10,12 @@ public class Main extends Application{
     public void start(Stage stage) throws Exception {
         GuiRoot guiRoot = GuiRoot.getInstance();
         guiRoot.getMainStage().setTitle("N Puzzle Solver");
-//        MainMenu mainMenu = new MainMenu();
-//        guiRoot.getMainStage().setScene(mainMenu.getScene());
         guiRoot.getRootPane().getChildren().clear();
-        guiRoot.getRootPane().getChildren().add(new MainMenu());
+        guiRoot.getRootPane().getChildren().add(new PuzzleWindow());
         guiRoot.getMainStage().show();
     }
 
     public static void main(String[] args) {
-//        PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel();
-//        puzzleBoardModel.printBoard();
-//        System.out.println();
-//        puzzleBoardModel.changePlacesOnePosition(2,5);
-//        puzzleBoardModel.printBoard();
         launch(args);
     }
 }

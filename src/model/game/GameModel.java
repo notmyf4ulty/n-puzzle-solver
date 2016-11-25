@@ -88,6 +88,22 @@ public class GameModel {
         puzzleBoardModel.meshBoard(meshIterations);
     }
 
+    public void moveUp() {
+        puzzleBoardModel.moveEmptyBlockUp();
+    }
+
+    public void moveRight() {
+        puzzleBoardModel.moveEmptyBlockRight();
+    }
+
+    public void moveBottom() {
+        puzzleBoardModel.moveEmptyBlockBottom();
+    }
+
+    public void moveLeft() {
+        puzzleBoardModel.moveEmptyBlockLeft();
+    }
+
     public PuzzleBoardModel getPuzzleBoardModel() {
         return puzzleBoardModel;
     }
