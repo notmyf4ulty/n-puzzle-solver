@@ -1,6 +1,8 @@
 package model.algorithm;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -57,6 +59,13 @@ public class AStar extends InformativeSearch {
 
 
     private Node getLowestFCostAlgNode() {
+        Collections.sort(openList, new Comparator<Node>() {
+            @Override
+            public int compare(Node node, Node t1) {
+                return node.getfCost() - t1.getfCost();
+            }
+        });
+
         if (openList != null) {
             Node lowestFCostAlgNodex = openList.get(0);
             for (int i = 1; i < openList.size(); i++) {

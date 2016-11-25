@@ -9,7 +9,6 @@ public abstract class Node {
 
     protected int fCost;
     protected int gCost;
-    protected int hCost;
     protected Node parent;
     protected Heuristic heuristic;
 
