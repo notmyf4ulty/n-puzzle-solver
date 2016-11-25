@@ -10,12 +10,12 @@ import model.PuzzleBoardModel;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PuzzleBoardView implements Observer {
+public class PuzzleBoardGrid implements Observer {
     AnchorPane mainPane;
     GridPane board;
     PuzzleBoardModel puzzleBoardModel;
 
-    public PuzzleBoardView() {
+    public PuzzleBoardGrid() {
         puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
         puzzleBoardModel.addObserver(this);
         mainPane = new AnchorPane();

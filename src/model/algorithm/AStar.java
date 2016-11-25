@@ -19,7 +19,7 @@ public class AStar extends InformativeSearch {
 
     @Override
     public Node fullSearch() {
-        Node currentNode;
+        Node currentNode = null;
         while (!openList.isEmpty()) {
             currentNode = getLowestFCostAlgNode();
             openList.remove(currentNode);
@@ -53,6 +53,8 @@ public class AStar extends InformativeSearch {
         }
         return null;
     }
+
+
 
     private Node getLowestFCostAlgNode() {
         if (openList != null) {
