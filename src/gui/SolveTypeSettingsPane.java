@@ -1,5 +1,7 @@
 package gui;
 
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -9,42 +11,55 @@ import model.game.*;
 
 
 class SolveTypeSettingsPane extends AnchorPane {
-    private HBox singleSolveSettingsPane;
+    private GridPane singleSolveSettingsPane;
 
     SolveTypeSettingsPane() {
-        GridPane solveTypePane = createSolveTypePane();
+        GridPane solveTypePane = createSolveSettingsPane();
         getChildren().addAll(solveTypePane);
     }
 
-    private GridPane createSolveTypePane() {
-        GridPane meshTypePane = new GridPane();
+    private GridPane createSolveSettingsPane() {
+        GridPane solveTypePane = new GridPane();
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPercentWidth(100);
+        solveTypePane.getColumnConstraints().addAll(columnConstraints);
         RowConstraints firstRowConstraints = new RowConstraints();
-        firstRowConstraints.setPercentHeight(30);
+        firstRowConstraints.setPercentHeight(40);
         RowConstraints secondRowConstraints = new RowConstraints();
-        secondRowConstraints.setPercentHeight(70);
-        meshTypePane.getRowConstraints().addAll(firstRowConstraints,secondRowConstraints);
-        AnchorPane.setTopAnchor(meshTypePane,5.0);
-        AnchorPane.setRightAnchor(meshTypePane,5.0);
-        AnchorPane.setBottomAnchor(meshTypePane,5.0);
-        AnchorPane.setLeftAnchor(meshTypePane,5.0);
+        secondRowConstraints.setPercentHeight(60);
+        solveTypePane.getRowConstraints().addAll(firstRowConstraints,secondRowConstraints);
+        AnchorPane.setTopAnchor(solveTypePane,5.0);
+        AnchorPane.setRightAnchor(solveTypePane,5.0);
+        AnchorPane.setLeftAnchor(solveTypePane,5.0);
 
         VBox solveTypeChoicePane = new VBox();
         solveTypeChoicePane.setAlignment(Pos.CENTER);
         Label meshTypeLabel = new Label("Rodzaj rozwiązania:");
         singleSolveSettingsPane = createSingleSolveSettingsPane();
-        HBox solveTypeRadioGroupPane = createSolveTypeRadioGroupPane();
+        singleSolveSettingsPane
+                .setStyle("-fx-border-color: black; -fx-border-width: 1 1 2 1; -fx-border-style: solid;");
+        singleSolveSettingsPane.setPadding(new Insets(5,5,5,5));
+        GridPane solveTypeRadioGroupPane = createSolveTypeRadioGroupPane();
         solveTypeChoicePane.getChildren().add(meshTypeLabel);
         solveTypeChoicePane.getChildren().add(solveTypeRadioGroupPane);
+        solveTypeChoicePane
+                .setStyle("-fx-border-color: black; -fx-border-width: 1 1 0 1; -fx-border-style: solid;");
+        solveTypeChoicePane.setPadding(new Insets(5,5,5,5));
 
-        meshTypePane.add(solveTypeChoicePane,0,0);
-        meshTypePane.add(singleSolveSettingsPane,0,1);
-        return meshTypePane;
+        solveTypePane.add(solveTypeChoicePane,0,0);
+        solveTypePane.add(singleSolveSettingsPane,0,1);
+        return solveTypePane;
     }
 
-    private HBox createSolveTypeRadioGroupPane() {
+    private GridPane createSolveTypeRadioGroupPane() {
         final String singleSolveType = "Pojedyncze";
         final String fullSolveType = "Pełna kombinacja";
-        HBox solveTypeRadioGroupPane = new HBox();
+        GridPane solveTypeRadioGroupPane = new GridPane();
+        ColumnConstraints firstColumnConstraints = new ColumnConstraints();
+        firstColumnConstraints.setPercentWidth(50);
+        ColumnConstraints secondColumnConstraints = new ColumnConstraints();
+        secondColumnConstraints.setPercentWidth(50);
+        solveTypeRadioGroupPane.getColumnConstraints().addAll(firstColumnConstraints, secondColumnConstraints);
         final ToggleGroup toggleGroup = new ToggleGroup();
         RadioButton singleChoice = new RadioButton(singleSolveType);
         singleChoice.setToggleGroup(toggleGroup);
@@ -65,19 +80,28 @@ class SolveTypeSettingsPane extends AnchorPane {
                     break;
             }
         });
-        solveTypeRadioGroupPane.getChildren().add(singleChoice);
-        solveTypeRadioGroupPane.getChildren().add(fullChoice);
+        solveTypeRadioGroupPane.add(singleChoice,0,0);
+        GridPane.setHalignment(singleChoice, HPos.CENTER);
+        solveTypeRadioGroupPane.add(fullChoice,1,0);
+        GridPane.setHalignment(fullChoice, HPos.CENTER);
+
         singleChoice.setSelected(false);
         singleChoice.setSelected(true);
 
         return solveTypeRadioGroupPane;
     }
 
-    private HBox createSingleSolveSettingsPane() {
-        HBox singleSolveSettingsPane = new HBox();
+    private GridPane createSingleSolveSettingsPane() {
+        GridPane singleSolveSettingsPane = new GridPane();
+        ColumnConstraints firstColumnConstraints = new ColumnConstraints();
+        firstColumnConstraints.setPercentWidth(50);
+        ColumnConstraints secondColumnConstraints = new ColumnConstraints();
+        secondColumnConstraints.setPercentWidth(50);
+        singleSolveSettingsPane.getColumnConstraints().addAll(firstColumnConstraints, secondColumnConstraints);
         VBox searchTypeRadioGroupPane = createSearchTypeRadioGroupPane();
         VBox heuristicTypeRadioGroupPane = createHeuristicTypeRadioGroupPane();
-        singleSolveSettingsPane.getChildren().addAll(searchTypeRadioGroupPane, heuristicTypeRadioGroupPane);
+        singleSolveSettingsPane.add(searchTypeRadioGroupPane,0,0);
+        singleSolveSettingsPane.add(heuristicTypeRadioGroupPane,1,0);
         return singleSolveSettingsPane;
     }
 
@@ -103,6 +127,8 @@ class SolveTypeSettingsPane extends AnchorPane {
                     break;
             }
         });
+        Label searchTypeLabel = new Label("Rodzaj przeszukiwania:");
+        searchTypeRadioGroupPane.getChildren().addAll(searchTypeLabel);
         searchTypeRadioGroupPane.getChildren().add(aStarChoice);
         searchTypeRadioGroupPane.getChildren().add(idaStarChoice);
         aStarChoice.setSelected(true);
@@ -132,6 +158,8 @@ class SolveTypeSettingsPane extends AnchorPane {
                     break;
             }
         });
+        Label heuristicTypeLabel = new Label("Heurystyka:");
+        heuristicTypeRadioGroupPane.getChildren().addAll(heuristicTypeLabel);
         heuristicTypeRadioGroupPane.getChildren().add(unsortedBlocksChoice);
         heuristicTypeRadioGroupPane.getChildren().add(manhattanDistanceChoice);
         unsortedBlocksChoice.setSelected(true);

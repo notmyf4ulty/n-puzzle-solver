@@ -2,6 +2,8 @@ package gui;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.geometry.HPos;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
@@ -22,12 +24,14 @@ class MeshTypeSettingsPane extends AnchorPane {
 
     private GridPane createMeshTypeChoicePane() {
         GridPane meshTypePane = new GridPane();
+        ColumnConstraints columnConstraints = new ColumnConstraints();
+        columnConstraints.setPercentWidth(100);
+        meshTypePane.getColumnConstraints().addAll(columnConstraints);
         RowConstraints firstRowConstraints = new RowConstraints();
         firstRowConstraints.setPercentHeight(30);
         RowConstraints secondRowConstraints = new RowConstraints();
         secondRowConstraints.setPercentHeight(70);
         meshTypePane.getRowConstraints().addAll(firstRowConstraints,secondRowConstraints);
-        AnchorPane.setTopAnchor(meshTypePane,5.0);
         AnchorPane.setRightAnchor(meshTypePane,5.0);
         AnchorPane.setBottomAnchor(meshTypePane,5.0);
         AnchorPane.setLeftAnchor(meshTypePane,5.0);
@@ -35,8 +39,10 @@ class MeshTypeSettingsPane extends AnchorPane {
         GridPane meshSettingsPane = createMeshSettingsPane();
         VBox meshTypeChoicePane = new VBox();
         meshTypeChoicePane.setAlignment(Pos.CENTER);
+        meshTypeChoicePane
+                .setStyle("-fx-border-color: black; -fx-border-width: 1 1 0 1; -fx-border-style: solid;");
         Label meshTypeLabel = new Label("Rodzaj pomieszania:");
-        HBox meshTypeRadioGroupPane = createMeshTypeRadioGroupPane();
+        GridPane meshTypeRadioGroupPane = createMeshTypeRadioGroupPane();
         meshTypeChoicePane.getChildren().add(meshTypeLabel);
         meshTypeChoicePane.getChildren().add(meshTypeRadioGroupPane);
         meshTypePane.add(meshTypeChoicePane,0,0);
@@ -44,10 +50,15 @@ class MeshTypeSettingsPane extends AnchorPane {
         return meshTypePane;
     }
 
-    private HBox createMeshTypeRadioGroupPane() {
+    private GridPane createMeshTypeRadioGroupPane() {
         final String manualMeshType = "Ręczny";
         final String automaticMeshType = "Automatyczny";
-        HBox meshTypeRadioGroupPane = new HBox();
+        GridPane meshTypeRadioGroupPane = new GridPane();
+        ColumnConstraints firstColumnConstraints = new ColumnConstraints();
+        firstColumnConstraints.setPercentWidth(50);
+        ColumnConstraints secondColumnConstraints = new ColumnConstraints();
+        secondColumnConstraints.setPercentWidth(50);
+        meshTypeRadioGroupPane.getColumnConstraints().addAll(firstColumnConstraints, secondColumnConstraints);
         final ToggleGroup toggleGroup = new ToggleGroup();
         RadioButton manualChoice = new RadioButton(manualMeshType);
         manualChoice.setToggleGroup(toggleGroup);
@@ -73,8 +84,10 @@ class MeshTypeSettingsPane extends AnchorPane {
                 }
             }
         });
-        meshTypeRadioGroupPane.getChildren().add(manualChoice);
-        meshTypeRadioGroupPane.getChildren().add(automaticChoice);
+        meshTypeRadioGroupPane.add(manualChoice,0,0);
+        GridPane.setHalignment(manualChoice, HPos.CENTER);
+        meshTypeRadioGroupPane.add(automaticChoice,1,0);
+        GridPane.setHalignment(automaticChoice, HPos.CENTER);
         manualChoice.setSelected(false);
         manualChoice.setSelected(true);
 
@@ -83,23 +96,25 @@ class MeshTypeSettingsPane extends AnchorPane {
 
     private GridPane createMeshSettingsPane() {
         GridPane meshSettingsPane = new GridPane();
-        meshSettingsPane.setHgap(2);
-        meshSettingsPane.setVgap(2);
-        ColumnConstraints columnConstraints = new ColumnConstraints();
-        columnConstraints.setPercentWidth(50);
-        columnConstraints.setPercentWidth(50);
+        ColumnConstraints firstColumnConstraints = new ColumnConstraints();
+        firstColumnConstraints.setPercentWidth(50);
+        ColumnConstraints secondColumnConstraints = new ColumnConstraints();
+        secondColumnConstraints.setPercentWidth(50);
+        meshSettingsPane.getColumnConstraints().addAll(firstColumnConstraints, secondColumnConstraints);
         AnchorPane.setTopAnchor(meshSettingsPane,5.0);
         AnchorPane.setRightAnchor(meshSettingsPane,5.0);
         AnchorPane.setBottomAnchor(meshSettingsPane,5.0);
         AnchorPane.setLeftAnchor(meshSettingsPane,5.0);
+        manualMeshSettingsPane = createManualMeshButtonsPane();
+        manualMeshSettingsPane
+                .setStyle("-fx-border-color: black; -fx-border-width: 1 0 1 1; -fx-border-style: solid;");
+        manualMeshSettingsPane.setPadding(new Insets(5,5,5,5));
         automaticMeshSettingsPane = createMeshLevelRadioGroupPane();
         automaticMeshSettingsPane
                 .setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;");
-        manualMeshSettingsPane = createManualMeshButtonsPane();
-        manualMeshSettingsPane
-                .setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;");
-        meshSettingsPane.add(automaticMeshSettingsPane,1,1);
+        automaticMeshSettingsPane.setPadding(new Insets(5,5,5,5));
         meshSettingsPane.add(manualMeshSettingsPane,0,1);
+        meshSettingsPane.add(automaticMeshSettingsPane,1,1);
         return meshSettingsPane;
     }
 
@@ -142,9 +157,9 @@ class MeshTypeSettingsPane extends AnchorPane {
     }
 
     private VBox createMeshLevelRadioGroupPane() {
-        final String lowMeshLevel = "Niski";
-        final String mediumMeshLevel = "Średni";
-        final String highMeshLevel = "Wysoki";
+        final String lowMeshLevel = "Niski (10 przesunięć)";
+        final String mediumMeshLevel = "Średni (100 przesunięć)";
+        final String highMeshLevel = "Wysoki (1000 przesunięć)";
         VBox meshLevelRadioGroupPane = new VBox();
         meshLevelRadioGroupPane.setAlignment(Pos.TOP_LEFT);
         Label automaticMeshLevelLabel = new Label("Poziom pomieszania:");
@@ -157,18 +172,7 @@ class MeshTypeSettingsPane extends AnchorPane {
         highChoice.setToggleGroup(toggleGroup);
 
         toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
-            GameModel gameModel = GameModel.getInstance();
-            RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-            switch (selectedRadioButton.getText()) {
-                case lowMeshLevel:
-                    gameModel.setMeshLevel(MeshLevel.LOW);
-                    break;
-                case mediumMeshLevel:
-                    gameModel.setMeshLevel(MeshLevel.MEDIUM);
-                    break;
-                case highMeshLevel:
-                    gameModel.setMeshLevel(MeshLevel.HIGH);
-            }
+            setMeshAccordingToModel((RadioButton) toggleGroup.getSelectedToggle());
         });
         meshLevelRadioGroupPane.getChildren().add(automaticMeshLevelLabel);
         meshLevelRadioGroupPane.getChildren().add(lowChoice);
@@ -176,6 +180,29 @@ class MeshTypeSettingsPane extends AnchorPane {
         meshLevelRadioGroupPane.getChildren().add(highChoice);
         lowChoice.setSelected(true);
 
+        disableProperty().addListener((observableValue, aBoolean, t1) -> {
+            if (aBoolean.equals(false)) {
+                setMeshAccordingToModel((RadioButton) toggleGroup.getSelectedToggle());
+            }
+        });
+
         return meshLevelRadioGroupPane;
+    }
+
+    private void setMeshAccordingToModel(RadioButton radioButton) {
+        final String lowMeshLevel = "Niski (10 przesunięć)";
+        final String mediumMeshLevel = "Średni (100 przesunięć)";
+        final String highMeshLevel = "Wysoki (1000 przesunięć)";
+        GameModel gameModel = GameModel.getInstance();
+        switch (radioButton.getText()) {
+            case lowMeshLevel:
+                gameModel.setMeshLevel(MeshLevel.LOW);
+                break;
+            case mediumMeshLevel:
+                gameModel.setMeshLevel(MeshLevel.MEDIUM);
+                break;
+            case highMeshLevel:
+                gameModel.setMeshLevel(MeshLevel.HIGH);
+        }
     }
 }
