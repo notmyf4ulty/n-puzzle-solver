@@ -45,8 +45,10 @@ class MeshTypeSettingsPane extends AnchorPane {
         GridPane meshTypeRadioGroupPane = createMeshTypeRadioGroupPane();
         meshTypeChoicePane.getChildren().add(meshTypeLabel);
         meshTypeChoicePane.getChildren().add(meshTypeRadioGroupPane);
+
         meshTypePane.add(meshTypeChoicePane,0,0);
         meshTypePane.add(meshSettingsPane,0,1);
+
         return meshTypePane;
     }
 
@@ -174,10 +176,18 @@ class MeshTypeSettingsPane extends AnchorPane {
         toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
             setMeshAccordingToModel((RadioButton) toggleGroup.getSelectedToggle());
         });
+
+        Button meshButton = new Button("Mieszaj");
+        meshButton.setOnAction(event -> {
+            gameModel.meshPuzzleBoardModel();
+        });
+        meshButton.setMaxWidth(Double.MAX_VALUE);
+
         meshLevelRadioGroupPane.getChildren().add(automaticMeshLevelLabel);
         meshLevelRadioGroupPane.getChildren().add(lowChoice);
         meshLevelRadioGroupPane.getChildren().add(mediumChoice);
         meshLevelRadioGroupPane.getChildren().add(highChoice);
+        meshLevelRadioGroupPane.getChildren().add(meshButton);
         lowChoice.setSelected(true);
 
         disableProperty().addListener((observableValue, aBoolean, t1) -> {

@@ -8,6 +8,7 @@ public class GameModel {
     private static GameModel instance = null;
     private PuzzleBoardModel puzzleBoardModel;
     private PuzzleBoardModel targetPuzzleBoardModel;
+    private PuzzleBoardModel savedMeshModel;
     private HeuristicType heuristicType;
     private SearchType searchType;
     private MeshLevel meshLevel;
@@ -19,6 +20,7 @@ public class GameModel {
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel(3);
         targetPuzzleBoardModel = puzzleBoardModel.getCopy();
+        savedMeshModel = puzzleBoardModel.getCopy();
         heuristicType = HeuristicType.UNORDERED_BLOCKS;
         searchType = SearchType.A_STAR;
         meshLevel = MeshLevel.LOW;
@@ -86,7 +88,14 @@ public class GameModel {
                 break;
         }
 
-        searchStat = informativeSearch.search();
+        SearchStat searchStat = informativeSearch.search();
+
+        if (searchStat != null) {
+            PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
+            if (informativeSearchResultNode != null) {
+                puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
+            }
+        }
     }
 
     public void meshPuzzleBoardModel() {
@@ -108,6 +117,20 @@ public class GameModel {
         puzzleBoardModel.meshBoard(meshIterations);
     }
 
+    public void saveMesh() {
+        savedMeshModel.setBoard(puzzleBoardModel.getCopyBoard());
+    }
+
+    public void loadMesh() {
+        if (savedMeshModel != null) {
+            puzzleBoardModel.setBoard(savedMeshModel.getCopyBoard());
+        }
+    }
+
+    public void resetMesh() {
+        puzzleBoardModel.setBoard(targetPuzzleBoardModel.getCopyBoard());
+    }
+
     public void changeBoardDimension(BoardDimension boardDimension) {
         switch (boardDimension) {
             case X3_DIMENSION:
@@ -121,6 +144,7 @@ public class GameModel {
                 break;
         }
         targetPuzzleBoardModel = puzzleBoardModel.getCopy();
+        savedMeshModel = puzzleBoardModel.getCopy();
     }
 
     public void moveUp() {

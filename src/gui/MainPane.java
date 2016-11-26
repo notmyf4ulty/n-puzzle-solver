@@ -22,7 +22,23 @@ public class MainPane extends VBox {
         messageListView.setMaxWidth(Double.MAX_VALUE);
         messageListView.setMinHeight(200);
         messageListView.setMaxHeight(200);
-        getChildren().addAll(puzzleSettingsPane,solveButton,messageListView);
+        Button saveMeshButton = new Button("Zapamiętaj pomieszanie");
+        saveMeshButton.setOnAction(event -> gameModel.saveMesh());
+        saveMeshButton.setMaxWidth(Double.MAX_VALUE);
+        Button loadMeshButton = new Button("Odtwórz ostatnie pomieszanie");
+        loadMeshButton.setOnAction(event -> gameModel.loadMesh());
+        loadMeshButton.setMaxWidth(Double.MAX_VALUE);
+        Button resetMeshButton = new Button("Wyczyść pomieszanie");
+        resetMeshButton.setOnAction(event -> gameModel.resetMesh());
+        resetMeshButton.setMaxWidth(Double.MAX_VALUE);
+
+        getChildren().addAll(puzzleSettingsPane,
+                saveMeshButton,
+                loadMeshButton,
+                resetMeshButton,
+                solveButton,
+                messageListView);
+
         gameModel.messageProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
