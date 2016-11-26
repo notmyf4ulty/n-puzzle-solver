@@ -9,80 +9,74 @@ import model.game.GameModel;
 import model.game.MeshLevel;
 import model.game.MeshType;
 
-/**
- * Created by przemek on 25.11.16.
- */
-public class MeshTypeSettingsPane extends AnchorPane {
-    GridPane meshTypePane;
-    VBox meshTypeChoicePane;
-    GridPane meshSettingsPane;
-    VBox automaticMeshSettingsPane;
-    VBox manualMeshSettingsPane;
-    GameModel gameModel;
+class MeshTypeSettingsPane extends AnchorPane {
+    private VBox automaticMeshSettingsPane;
+    private VBox manualMeshSettingsPane;
+    private GameModel gameModel;
 
-    public MeshTypeSettingsPane() {
+    MeshTypeSettingsPane() {
         gameModel = GameModel.getInstance();
-        meshTypePane = createMeshTypeChoicePane();
+        GridPane meshTypePane = createMeshTypeChoicePane();
         getChildren().add(meshTypePane);
     }
 
     private GridPane createMeshTypeChoicePane() {
         GridPane meshTypePane = new GridPane();
         RowConstraints firstRowConstraints = new RowConstraints();
-        firstRowConstraints.setPercentHeight(10);
+        firstRowConstraints.setPercentHeight(30);
         RowConstraints secondRowConstraints = new RowConstraints();
-        secondRowConstraints.setPercentHeight(90);
+        secondRowConstraints.setPercentHeight(70);
         meshTypePane.getRowConstraints().addAll(firstRowConstraints,secondRowConstraints);
         AnchorPane.setTopAnchor(meshTypePane,5.0);
         AnchorPane.setRightAnchor(meshTypePane,5.0);
         AnchorPane.setBottomAnchor(meshTypePane,5.0);
         AnchorPane.setLeftAnchor(meshTypePane,5.0);
 
-        meshTypeChoicePane = new VBox();
+        GridPane meshSettingsPane = createMeshSettingsPane();
+        VBox meshTypeChoicePane = new VBox();
         meshTypeChoicePane.setAlignment(Pos.CENTER);
         Label meshTypeLabel = new Label("Rodzaj pomieszania:");
         HBox meshTypeRadioGroupPane = createMeshTypeRadioGroupPane();
         meshTypeChoicePane.getChildren().add(meshTypeLabel);
         meshTypeChoicePane.getChildren().add(meshTypeRadioGroupPane);
-
-        meshSettingsPane = createMeshSettingsPane();
-
         meshTypePane.add(meshTypeChoicePane,0,0);
         meshTypePane.add(meshSettingsPane,0,1);
         return meshTypePane;
     }
 
     private HBox createMeshTypeRadioGroupPane() {
+        final String manualMeshType = "Ręczny";
+        final String automaticMeshType = "Automatyczny";
         HBox meshTypeRadioGroupPane = new HBox();
         final ToggleGroup toggleGroup = new ToggleGroup();
-        RadioButton manualChoice = new RadioButton("Ręczny");
+        RadioButton manualChoice = new RadioButton(manualMeshType);
         manualChoice.setToggleGroup(toggleGroup);
-        manualChoice.setSelected(true);
-        RadioButton automaticChoice = new RadioButton("Automatyczny");
+        RadioButton automaticChoice = new RadioButton(automaticMeshType);
         automaticChoice.setToggleGroup(toggleGroup);
 
         toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
             @Override
             public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                if (!toggle.equals(t1)) {
-                    RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-                    switch (selectedRadioButton.getText()) {
-                        case "Ręczny":
-                            gameModel.setMeshType(MeshType.MANUAL);
-                            manualMeshSettingsPane.setDisable(false);
-                            automaticMeshSettingsPane.setDisable(true);
-                            break;
-                        case "Automatyczny":
-                            gameModel.setMeshType(MeshType.AUTOMATIC);
-                            manualMeshSettingsPane.setDisable(true);
-                            automaticMeshSettingsPane.setDisable(false);
-                            break;
-                    }
+                GameModel gameModel = GameModel.getInstance();
+                RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+                switch (selectedRadioButton.getText()) {
+                    case manualMeshType:
+                        gameModel.setMeshType(MeshType.MANUAL);
+                        manualMeshSettingsPane.setDisable(false);
+                        automaticMeshSettingsPane.setDisable(true);
+                        break;
+                    case automaticMeshType:
+                        gameModel.setMeshType(MeshType.AUTOMATIC);
+                        manualMeshSettingsPane.setDisable(true);
+                        automaticMeshSettingsPane.setDisable(false);
+                        break;
                 }
             }
         });
         meshTypeRadioGroupPane.getChildren().add(manualChoice);
         meshTypeRadioGroupPane.getChildren().add(automaticChoice);
+        manualChoice.setSelected(false);
+        manualChoice.setSelected(true);
 
         return meshTypeRadioGroupPane;
     }
@@ -148,40 +142,39 @@ public class MeshTypeSettingsPane extends AnchorPane {
     }
 
     private VBox createMeshLevelRadioGroupPane() {
+        final String lowMeshLevel = "Niski";
+        final String mediumMeshLevel = "Średni";
+        final String highMeshLevel = "Wysoki";
         VBox meshLevelRadioGroupPane = new VBox();
         meshLevelRadioGroupPane.setAlignment(Pos.TOP_LEFT);
-
         Label automaticMeshLevelLabel = new Label("Poziom pomieszania:");
-
         ToggleGroup toggleGroup = new ToggleGroup();
-        RadioButton lowChoice = new RadioButton("Niski");
+        RadioButton lowChoice = new RadioButton(lowMeshLevel);
         lowChoice.setToggleGroup(toggleGroup);
-        lowChoice.setSelected(true);
-        RadioButton mediumChoice = new RadioButton("Średni");
+        RadioButton mediumChoice = new RadioButton(mediumMeshLevel);
         mediumChoice.setToggleGroup(toggleGroup);
-        RadioButton highChoice = new RadioButton("Duży");
+        RadioButton highChoice = new RadioButton(highMeshLevel);
         highChoice.setToggleGroup(toggleGroup);
 
-        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-                switch (selectedRadioButton.getText()) {
-                    case "Niski":
-                        gameModel.setMeshLevel(MeshLevel.LOW);
-                        break;
-                    case "Średni":
-                        gameModel.setMeshLevel(MeshLevel.MEDIUM);
-                        break;
-                    case "Duży":
-                        gameModel.setMeshLevel(MeshLevel.HIGH);
-                }
+        toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
+            GameModel gameModel = GameModel.getInstance();
+            RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+            switch (selectedRadioButton.getText()) {
+                case lowMeshLevel:
+                    gameModel.setMeshLevel(MeshLevel.LOW);
+                    break;
+                case mediumMeshLevel:
+                    gameModel.setMeshLevel(MeshLevel.MEDIUM);
+                    break;
+                case highMeshLevel:
+                    gameModel.setMeshLevel(MeshLevel.HIGH);
             }
         });
         meshLevelRadioGroupPane.getChildren().add(automaticMeshLevelLabel);
         meshLevelRadioGroupPane.getChildren().add(lowChoice);
         meshLevelRadioGroupPane.getChildren().add(mediumChoice);
         meshLevelRadioGroupPane.getChildren().add(highChoice);
+        lowChoice.setSelected(true);
 
         return meshLevelRadioGroupPane;
     }
