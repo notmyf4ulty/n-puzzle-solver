@@ -1,10 +1,9 @@
 package model.game;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import model.algorithm.*;
 
-/**
- * Created by przemek on 20.11.16.
- */
 public class GameModel {
     private static GameModel instance = null;
     private PuzzleBoardModel puzzleBoardModel;
@@ -15,6 +14,7 @@ public class GameModel {
     private SolveType solveType;
     private MeshType meshType;
     private SearchStat searchStat;
+    private StringProperty message;
 
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel(3);
@@ -22,6 +22,7 @@ public class GameModel {
         heuristicType = HeuristicType.UNORDERED_BLOCKS;
         searchType = SearchType.A_STAR;
         meshLevel = MeshLevel.LOW;
+        message = new SimpleStringProperty("");
     }
 
     public static GameModel getInstance() {
@@ -29,6 +30,28 @@ public class GameModel {
             instance = new GameModel();
         }
         return instance;
+    }
+
+    public void solve() {
+        switch (solveType) {
+            case SINGLE:
+                PuzzleBoardModel beginningForm = puzzleBoardModel.getCopy();
+                message.setValue("Mieszam liczby...");
+                meshPuzzleBoardModel();
+                message.setValue("Rozwiązuję zadanie...");
+                solveSinglePuzzle();
+                if (searchStat != null) {
+                    PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
+                    if (informativeSearchResultNode != null) {
+                        puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
+                    }
+                }
+                message.setValue("Rozwiązano zadanie.");
+                message.setValue("Koszt: " + searchStat.getCost());
+                message.setValue("Długość ścieżki: " + searchStat.getPathDepth());
+                break;
+        }
+
     }
 
     public void solveSinglePuzzle() {
@@ -64,13 +87,9 @@ public class GameModel {
         }
 
         searchStat = informativeSearch.search();
-        PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
-        if (informativeSearchResultNode != null) {
-            puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
-        }
     }
 
-    public void mesh() {
+    public void meshPuzzleBoardModel() {
         int meshIterations;
         switch (meshLevel) {
             case LOW:
@@ -166,5 +185,13 @@ public class GameModel {
 
     public void setMeshType(MeshType meshType) {
         this.meshType = meshType;
+    }
+
+    public String getMessage() {
+        return message.get();
+    }
+
+    public StringProperty messageProperty() {
+        return message;
     }
 }

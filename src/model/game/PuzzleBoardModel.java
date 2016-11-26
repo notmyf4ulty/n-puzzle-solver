@@ -47,7 +47,6 @@ public class PuzzleBoardModel extends Observable {
 
     }
 
-
     void moveEmptyBlockUp() {
         Position newPosition = new Position(emptyBlock.getPosition().getX(),emptyBlock.getPosition().getY() - 1);
         interchangEmptyBlockByPosition(newPosition);

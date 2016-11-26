@@ -1,12 +1,16 @@
 package gui;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.game.GameModel;
 
 public class MainPane extends VBox {
-    GameModel gameModel;
+    private GameModel gameModel;
+    ListView<String> messageListView;
 
     public MainPane() {
         gameModel = GameModel.getInstance();
@@ -14,7 +18,17 @@ public class MainPane extends VBox {
         puzzleSettingsPane.getChildren().add(new PuzzlePane());
         puzzleSettingsPane.getChildren().add(new SettingsPane());
         Button solveButton = createSolveButton();
-        getChildren().addAll(puzzleSettingsPane,solveButton);
+        messageListView = new ListView<>();
+        messageListView.setMaxWidth(Double.MAX_VALUE);
+        messageListView.setMinHeight(200);
+        messageListView.setMaxHeight(200);
+        getChildren().addAll(puzzleSettingsPane,solveButton,messageListView);
+        gameModel.messageProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
+                messageListView.getItems().add(s);
+            }
+        });
     }
 
     private Button createSolveButton() {
