@@ -12,6 +12,7 @@ import model.game.GameModel;
 class PuzzlePane extends VBox {
 
     StackPane puzzleBoardPane;
+    final ToggleGroup toggleGroup = new ToggleGroup();
 
     PuzzlePane() {
         puzzleBoardPane = new StackPane();
@@ -20,9 +21,9 @@ class PuzzlePane extends VBox {
         puzzleBoardPane.setAlignment(Pos.CENTER);
         puzzleBoardPane.setStyle("-fx-border-width: 1; -fx-border-style: solid;");
         puzzleBoardPane.getChildren().add(new PuzzleBoardGrid().getMainPane());
-        GridPane boardDimensionRadioGroupPane = createBoardDimensionRadioGroupPane();
+//        GridPane boardDimensionRadioGroupPane = createBoardDimensionRadioGroupPane();
         getChildren().add(puzzleBoardPane);
-        getChildren().add(boardDimensionRadioGroupPane);
+//        getChildren().add(boardDimensionRadioGroupPane);
         setPadding(new Insets(5,5,5,5));
     }
 
@@ -39,7 +40,6 @@ class PuzzlePane extends VBox {
         thirdColumnConstraints.setPercentWidth(33);
         boardDimensionRadioGroupPane.getColumnConstraints()
                 .addAll(firstColumnConstraints, secondColumnConstraints, thirdColumnConstraints);
-        final ToggleGroup toggleGroup = new ToggleGroup();
         RadioButton x3Choice = new RadioButton(x3Dimension);
         x3Choice.setToggleGroup(toggleGroup);
         RadioButton x4Choice = new RadioButton(x4Dimension);
@@ -48,17 +48,17 @@ class PuzzlePane extends VBox {
         x5Choice.setToggleGroup(toggleGroup);
 
         toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
-            GameModel gameModel1 = GameModel.getInstance();
+            GameModel gameModel = GameModel.getInstance();
             RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
             switch (selectedRadioButton.getText()) {
                 case x3Dimension:
-                    gameModel1.changeBoardDimension(BoardDimension.X3_DIMENSION);
+                    gameModel.changeBoardDimension(BoardDimension.X3_DIMENSION);
                     break;
                 case x4Dimension:
-                    gameModel1.changeBoardDimension(BoardDimension.X4_DIMENSION);
+                    gameModel.changeBoardDimension(BoardDimension.X4_DIMENSION);
                     break;
                 case x5Dimension:
-                    gameModel1.changeBoardDimension(BoardDimension.X5_DIMENSION);
+                    gameModel.changeBoardDimension(BoardDimension.X5_DIMENSION);
                     break;
             }
             puzzleBoardPane.getChildren().clear();
@@ -74,5 +74,9 @@ class PuzzlePane extends VBox {
         x3Choice.setSelected(true);
 
         return boardDimensionRadioGroupPane;
+    }
+
+    public StackPane getPuzzleBoardPane() {
+        return puzzleBoardPane;
     }
 }

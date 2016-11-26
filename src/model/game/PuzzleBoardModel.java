@@ -6,9 +6,6 @@ import java.util.Arrays;
 import java.util.Observable;
 import java.util.concurrent.ThreadLocalRandom;
 
-/**
- * Created by przemek on 20.11.16.
- */
 public class PuzzleBoardModel extends Observable {
     private int boardDimension;
     private Block [][] board;

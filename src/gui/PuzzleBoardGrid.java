@@ -26,7 +26,6 @@ class PuzzleBoardGrid implements Observer {
     private GridPane generateNewBoard() {
         GridPane board = new GridPane();
         Block[][] boardModel = puzzleBoardModel.getBoard();
-        puzzleBoardModel.printBoard();
         for (Block [] blocks : boardModel) {
             for (Block block : blocks) {
                 FieldPane fieldPane = new FieldPane(block.getNumber());

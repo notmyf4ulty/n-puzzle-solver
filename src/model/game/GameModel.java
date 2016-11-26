@@ -10,7 +10,6 @@ public class GameModel {
     private HeuristicType heuristicType;
     private SearchType searchType;
     private MeshLevel meshLevel;
-    private SolveType solveType;
     private MeshType meshType;
     private SearchStat searchStat;
     private boolean lastComputationFailFlag;
@@ -171,14 +170,6 @@ public class GameModel {
 
     public void setMeshLevel(MeshLevel meshLevel) {
         this.meshLevel = meshLevel;
-    }
-
-    public SolveType getSolveType() {
-        return solveType;
-    }
-
-    public void setSolveType(SolveType solveType) {
-        this.solveType = solveType;
     }
 
     public MeshType getMeshType() {
