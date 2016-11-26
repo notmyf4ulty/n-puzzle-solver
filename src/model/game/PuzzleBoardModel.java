@@ -1,7 +1,6 @@
-package model;
+package model.game;
 
 import javafx.application.Platform;
-import javafx.geometry.Pos;
 
 import java.util.Arrays;
 import java.util.Observable;

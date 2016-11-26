@@ -1,6 +1,5 @@
 package model.game;
 
-import model.PuzzleBoardModel;
 import model.algorithm.*;
 
 /**

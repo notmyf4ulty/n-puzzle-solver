@@ -1,6 +1,6 @@
 package model.algorithm;
 
-import model.PuzzleBoardModel;
+import model.game.PuzzleBoardModel;
 
 /**
  * Created by przemek on 24.11.16.

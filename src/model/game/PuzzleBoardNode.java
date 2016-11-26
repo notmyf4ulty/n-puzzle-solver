@@ -1,7 +1,5 @@
 package model.game;
 
-import model.Block;
-import model.PuzzleBoardModel;
 import model.algorithm.Heuristic;
 import model.algorithm.Node;
 

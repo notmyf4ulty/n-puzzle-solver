@@ -3,10 +3,10 @@ package gui;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
-import model.Block;
+import model.game.Block;
 import model.game.GameModel;
-import model.Position;
-import model.PuzzleBoardModel;
+import model.game.Position;
+import model.game.PuzzleBoardModel;
 import java.util.Observable;
 import java.util.Observer;
 
