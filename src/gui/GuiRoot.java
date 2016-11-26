@@ -33,12 +33,4 @@ public class GuiRoot {
     public AnchorPane getRootPane() {
         return rootPane;
     }
-
-    public Scene getMainScene() {
-        return mainScene;
-    }
-
-    public void setMainScene(Scene mainScene) {
-        this.mainScene = mainScene;
-    }
 }

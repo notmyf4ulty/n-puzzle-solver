@@ -10,12 +10,12 @@ import model.PuzzleBoardModel;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PuzzleBoardGrid implements Observer {
-    AnchorPane mainPane;
-    GridPane board;
-    PuzzleBoardModel puzzleBoardModel;
+class PuzzleBoardGrid implements Observer {
+    private AnchorPane mainPane;
+    private GridPane board;
+    private PuzzleBoardModel puzzleBoardModel;
 
-    public PuzzleBoardGrid() {
+    PuzzleBoardGrid() {
         puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
         puzzleBoardModel.addObserver(this);
         mainPane = new AnchorPane();
@@ -68,7 +68,7 @@ public class PuzzleBoardGrid implements Observer {
         refreshBoard();
     }
 
-    public AnchorPane getMainPane() {
+    AnchorPane getMainPane() {
         return mainPane;
     }
 }

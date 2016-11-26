@@ -2,15 +2,10 @@ package gui;
 
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
-import model.game.GameModel;
 
 class SettingsPane extends GridPane {
 
-    private GameModel gameModel;
-
     SettingsPane() {
-        gameModel = GameModel.getInstance();
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setPercentWidth(100);
         getColumnConstraints().add(columnConstraints);

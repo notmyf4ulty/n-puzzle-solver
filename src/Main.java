@@ -1,5 +1,4 @@
 import gui.GuiRoot;
-import gui.MainMenu;
 import gui.PuzzleWindow;
 import javafx.application.Application;
 import javafx.stage.Stage;
