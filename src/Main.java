@@ -1,5 +1,5 @@
 import gui.GuiRoot;
-import gui.PuzzleWindow;
+import gui.MainPane;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -10,7 +10,7 @@ public class Main extends Application{
         GuiRoot guiRoot = GuiRoot.getInstance();
         guiRoot.getMainStage().setTitle("N Puzzle Solver");
         guiRoot.getRootPane().getChildren().clear();
-        guiRoot.getRootPane().getChildren().add(new PuzzleWindow());
+        guiRoot.getRootPane().getChildren().add(new MainPane());
         guiRoot.getMainStage().show();
     }
 

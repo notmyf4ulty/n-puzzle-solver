@@ -2,9 +2,9 @@ package gui;
 
 import javafx.scene.layout.HBox;
 
-public class PuzzleWindow extends HBox {
+public class MainPane extends HBox {
 
-    public PuzzleWindow() {
+    public MainPane() {
         getChildren().add(new PuzzlePane());
         getChildren().add(new SettingsPane());
     }

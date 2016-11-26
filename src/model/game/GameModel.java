@@ -7,16 +7,16 @@ import model.algorithm.*;
  */
 public class GameModel {
     private static GameModel instance = null;
-    PuzzleBoardModel puzzleBoardModel;
-    PuzzleBoardModel targetPuzzleBoardModel;
-    HeuristicType heuristicType;
-    SearchType searchType;
-    MeshLevel meshLevel;
-    SolveType solveType;
-    MeshType meshType;
+    private PuzzleBoardModel puzzleBoardModel;
+    private PuzzleBoardModel targetPuzzleBoardModel;
+    private HeuristicType heuristicType;
+    private SearchType searchType;
+    private MeshLevel meshLevel;
+    private SolveType solveType;
+    private MeshType meshType;
 
     private GameModel() {
-        puzzleBoardModel = new PuzzleBoardModel();
+        puzzleBoardModel = new PuzzleBoardModel(3);
         targetPuzzleBoardModel = puzzleBoardModel.getCopy();
         heuristicType = HeuristicType.UNORDERED_BLOCKS;
         searchType = SearchType.A_STAR;
@@ -30,7 +30,7 @@ public class GameModel {
         return instance;
     }
 
-    public void solvePuzzle() {
+    public void solveSinglePuzzle() {
         Node rootNode;
         Node targetNode;
         InformativeSearch informativeSearch;
@@ -85,6 +85,21 @@ public class GameModel {
                 break;
         }
         puzzleBoardModel.meshBoard(meshIterations);
+    }
+
+    public void changeBoardDimension(BoardDimension boardDimension) {
+        switch (boardDimension) {
+            case X3_DIMENSION:
+                puzzleBoardModel = new PuzzleBoardModel(3);
+                break;
+            case X4_DIMENSION:
+                puzzleBoardModel = new PuzzleBoardModel(4);
+                break;
+            case X5_DIMENSION:
+                puzzleBoardModel = new PuzzleBoardModel(5);
+                break;
+        }
+        targetPuzzleBoardModel = puzzleBoardModel.getCopy();
     }
 
     public void moveUp() {
