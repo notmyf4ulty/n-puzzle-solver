@@ -10,7 +10,9 @@ public abstract class InformativeSearch {
         this.targetNode = targetNode;
     }
 
-    abstract public Node fullSearch();
+    abstract public SearchStat search();
+
+    public
 
     boolean isTargetConfiguration(Node node) {
         return node.equals(targetNode);

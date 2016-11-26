@@ -2,12 +2,8 @@ package model.algorithm;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
-/**
- * Created by przemek on 24.11.16.
- */
 public class AStar extends InformativeSearch {
     List<Node> openList;
     List<Node> closedList;
@@ -20,14 +16,14 @@ public class AStar extends InformativeSearch {
     }
 
     @Override
-    public Node fullSearch() {
+    public SearchStat search() {
         Node currentNode = null;
         while (!openList.isEmpty()) {
             currentNode = getLowestFCostAlgNode();
             openList.remove(currentNode);
             closedList.add(currentNode);
             if (isTargetConfiguration(currentNode)) {
-                return currentNode;
+                return new SearchStat(currentNode);
             } else {
                 for (Node descendantNode : currentNode.generateDescendants()) {
                     if (openList.contains(descendantNode)) {
@@ -50,21 +46,13 @@ public class AStar extends InformativeSearch {
                         openList.add(descendantNode);
                     }
                 }
-
             }
         }
         return null;
     }
 
-
-
     private Node getLowestFCostAlgNode() {
-        Collections.sort(openList, new Comparator<Node>() {
-            @Override
-            public int compare(Node node, Node t1) {
-                return node.getfCost() - t1.getfCost();
-            }
-        });
+        Collections.sort(openList, (node, t1) -> node.getfCost() - t1.getfCost());
 
         if (openList != null) {
             Node lowestFCostAlgNodex = openList.get(0);

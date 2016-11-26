@@ -14,6 +14,7 @@ public class GameModel {
     private MeshLevel meshLevel;
     private SolveType solveType;
     private MeshType meshType;
+    private SearchStat searchStat;
 
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel(3);
@@ -62,7 +63,8 @@ public class GameModel {
                 break;
         }
 
-        PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) informativeSearch.fullSearch();
+        searchStat = informativeSearch.search();
+        PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
         if (informativeSearchResultNode != null) {
             puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
         }

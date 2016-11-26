@@ -14,7 +14,8 @@ public class PuzzleBoardNode extends Node {
     public PuzzleBoardNode(PuzzleBoardModel puzzleBoardModel, int gCost, Node parent, Heuristic heuristic) {
         super(gCost, parent, heuristic);
         this.puzzleBoardModel = puzzleBoardModel;
-        this.gCost += TRAVEL_COST;
+        this.travelCost = TRAVEL_COST;
+        this.gCost += travelCost;
         this.fCost = calculateFCost();
     }
 

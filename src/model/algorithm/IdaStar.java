@@ -7,17 +7,13 @@ import java.util.List;
  * Created by przemek on 25.11.16.
  */
 public class IdaStar extends InformativeSearch{
-    LinkedList<Node> openList;
-    int currentFCostLimit = 0;
 
     public IdaStar(Node rootNode, Node targetNode) {
         super(rootNode, targetNode);
-        openList = new LinkedList<>();
-        openList.push(rootNode);
     }
 
     @Override
-    public Node fullSearch() {
+    public SearchStat search() {
         int limit = rootNode.getfCost();
         Node resultNode;
         do {
@@ -27,7 +23,8 @@ public class IdaStar extends InformativeSearch{
                 limit = newLimit;
             }
         } while (!isTargetConfiguration(resultNode) && (limit < 10000));
-        return resultNode;
+        SearchStat searchStat = new SearchStat(resultNode);
+        return searchStat;
     }
 
     private Node depthFirstSearch(Node rootNode, int limit) {

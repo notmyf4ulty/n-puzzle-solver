@@ -1,13 +1,9 @@
 package gui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.*;
 import model.game.BoardDimension;
@@ -15,7 +11,6 @@ import model.game.GameModel;
 
 class PuzzlePane extends VBox {
 
-    private GameModel gameModel;
     StackPane puzzleBoardPane;
 
     PuzzlePane() {
@@ -25,27 +20,10 @@ class PuzzlePane extends VBox {
         puzzleBoardPane.setAlignment(Pos.CENTER);
         puzzleBoardPane.setStyle("-fx-border-width: 1; -fx-border-style: solid;");
         puzzleBoardPane.getChildren().add(new PuzzleBoardGrid().getMainPane());
-        Button solveButton = createSolveButton();
-        Button meshButton = createMeshButton();
         GridPane boardDimensionRadioGroupPane = createBoardDimensionRadioGroupPane();
         getChildren().add(puzzleBoardPane);
-        getChildren().add(solveButton);
-        getChildren().add(meshButton);
         getChildren().add(boardDimensionRadioGroupPane);
         setPadding(new Insets(5,5,5,5));
-        gameModel = GameModel.getInstance();
-    }
-
-    private Button createSolveButton() {
-        Button button = new Button("Click me");
-        button.setOnAction(actionEvent -> gameModel.solveSinglePuzzle());
-        return button;
-    }
-
-    private Button createMeshButton() {
-        Button button = new Button("Mesh");
-        button.setOnAction(actionEvent -> gameModel.mesh());
-        return button;
     }
 
     private GridPane createBoardDimensionRadioGroupPane() {
@@ -69,25 +47,22 @@ class PuzzlePane extends VBox {
         RadioButton x5Choice = new RadioButton(x5Dimension);
         x5Choice.setToggleGroup(toggleGroup);
 
-        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                GameModel gameModel = GameModel.getInstance();
-                RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-                switch (selectedRadioButton.getText()) {
-                    case x3Dimension:
-                        gameModel.changeBoardDimension(BoardDimension.X3_DIMENSION);
-                        break;
-                    case x4Dimension:
-                        gameModel.changeBoardDimension(BoardDimension.X4_DIMENSION);
-                        break;
-                    case x5Dimension:
-                        gameModel.changeBoardDimension(BoardDimension.X5_DIMENSION);
-                        break;
-                }
-                puzzleBoardPane.getChildren().clear();
-                puzzleBoardPane.getChildren().add(new PuzzleBoardGrid().getMainPane());
+        toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
+            GameModel gameModel1 = GameModel.getInstance();
+            RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+            switch (selectedRadioButton.getText()) {
+                case x3Dimension:
+                    gameModel1.changeBoardDimension(BoardDimension.X3_DIMENSION);
+                    break;
+                case x4Dimension:
+                    gameModel1.changeBoardDimension(BoardDimension.X4_DIMENSION);
+                    break;
+                case x5Dimension:
+                    gameModel1.changeBoardDimension(BoardDimension.X5_DIMENSION);
+                    break;
             }
+            puzzleBoardPane.getChildren().clear();
+            puzzleBoardPane.getChildren().add(new PuzzleBoardGrid().getMainPane());
         });
         boardDimensionRadioGroupPane.add(x3Choice,0,0);
         GridPane.setHalignment(x5Choice, HPos.CENTER);

@@ -9,6 +9,7 @@ public abstract class Node {
 
     protected int fCost;
     protected int gCost;
+    protected int travelCost;
     protected Node parent;
     protected Heuristic heuristic;
 
@@ -27,5 +28,13 @@ public abstract class Node {
 
     public int getgCost() {
         return gCost;
+    }
+
+    public int getTravelCost() {
+        return travelCost;
+    }
+
+    public Node getParent() {
+        return parent;
     }
 }
