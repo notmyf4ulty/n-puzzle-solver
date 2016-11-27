@@ -3,7 +3,17 @@ package model.algorithm;
 import model.game.Block;
 import model.game.PuzzleBoardModel;
 
+/**
+ * Implementacja algorytmu obliczającego funkcję heurystyki wg dystansu Manhattan.
+ */
 public class ManhattanDistanceHeristic implements Heuristic {
+
+    /**
+     * Funkcja obliczająca heurystykę Manhattan dla danego ułożenia układanki.
+     * Liczona jest suma odległości po współrzędnych x i y dla każdego z bloczków.
+     * @param puzzleBoardModel Układanka do obliczenia heurystyki.
+     * @return Wartości funkcji heurystyki.
+     */
     public int calculate(PuzzleBoardModel puzzleBoardModel) {
         int cost = 0;
         for (Block[] blocks : puzzleBoardModel.getBoard()) {

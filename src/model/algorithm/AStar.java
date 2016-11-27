@@ -6,10 +6,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Klasa zajmująca się przeszukiwaniem poinformowanym wg algorytmu A*.
+ */
 public class AStar extends InformativeSearch {
+
+    /**
+     * Lista OPEN.
+     */
     private List<Node> openList;
+
+    /**
+     * Lista CLOSED.
+     */
     private List<Node> closedList;
 
+    /**
+     * Konstruktor. Inicjalizuje listy węzłów, węzeł początkowy, końcowy oraz ogarniczenie liczby rozwijanych węzłów.
+     * @param rootNode Węzeł początkowy.
+     * @param targetNode Cel.
+     * @param nodesLimit Limit rozwijanych węzłów.
+     */
     public AStar(Node rootNode, Node targetNode, int nodesLimit) {
         super(rootNode, targetNode, nodesLimit);
         openList = new ArrayList<>();
@@ -17,12 +34,16 @@ public class AStar extends InformativeSearch {
         openList.add(rootNode);
     }
 
+    /**
+     * Implementacja algorytmu przeszukiwania poinformowanego A*.
+     * @return Zwraca obiekt klasy SearchStat przechowujący statystyki dotyczące przeszukiwania.
+     */
     @Override
     public SearchStat search() {
         Node currentNode;
         int nodesLimit = this.nodesLimit;
         while (!openList.isEmpty()) {
-            currentNode = getLowestFCostAlgNode();
+            currentNode = getLowestFCostNode();
             openList.remove(currentNode);
             closedList.add(currentNode);
             if (isTargetConfiguration(currentNode)) {
@@ -58,7 +79,11 @@ public class AStar extends InformativeSearch {
         return null;
     }
 
-    private Node getLowestFCostAlgNode() {
+    /**
+     * Sortuje, a następnie przeszukuje listę OPEN w celu znalezienia węzła o najmniejszym koszcie dotarcia.
+     * @return Węzeł o najmniejszej wartości funkcji f(n).
+     */
+    private Node getLowestFCostNode() {
         Collections.sort(openList, (node, t1) -> node.getfCost() - t1.getfCost());
 
         if (openList != null) {
