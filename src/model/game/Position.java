@@ -2,19 +2,42 @@ package model.game;
 
 import java.util.ArrayList;
 
+/**
+ * Model pozycji zajmowanej przez bloczek. Należy zwrócić uwagę na fakt, że kierunek osi y jest przeciwny niż w układzie
+ * kartezjańskim.
+ */
 public class Position {
+
+    /**
+     * Współrzędna x.
+     */
     private final int x;
+
+    /**
+     * Współrzędna y.
+     */
     private final int y;
 
+    /**
+     * Konstruktor inicjalizujący podstawowe wartości pól.
+     */
     Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
+    /**
+     * Konstrktor oparty na istniejącym obiekcie klasy.
+     */
     Position(Position position) {
         this(position.getX(),position.getY());
     }
 
+    /**
+     * Sprawdza, czy pomiędzy aktualną, a zadaną pozycją jest prostopadła odległość jednego bloczka.
+     * @param position Zadana pozycja do sprawdzenia.
+     * @return true - pomiedzy pozycjami jest odległość jednego bloczka. false - jest inna odległość.
+     */
     boolean isOneUnitDistance(Position position) {
         boolean isXSame = this.x == position.x;
         boolean isYSame = this.y == position.y;
@@ -24,6 +47,12 @@ public class Position {
         return isOneXDistance && isYSame || isXSame && isOneYDistance;
     }
 
+    /**
+     * Zwraca sąsiadujące pozycje. Zwracane są tylko te pozycje, które posiadają dodatnie lub równe zeru wartości
+     * współrzędnych i takie, które są mniejsze od zadanej granicy.
+     * @param border Granica dla wspórzędnych pozycji.
+     * @return Tablica sąsiadujących, poprawnych pozycji.
+     */
     Position [] getNeighbouringPositions(int border) {
         Position [] positions = new Position[4];
         positions[0] = new Position(x, y - 1);
@@ -45,6 +74,13 @@ public class Position {
         return candidatesPositionsArray;
     }
 
+    /**
+     * Sprawdza, czy pozycjia jest poprawna, tj. Czy wartości współrzędnych nie są mniejsze od zera
+     * i czy nie przekraczają zadanej granicy.
+     * @param position Pozycja do sprawdzenia.
+     * @param border Granica współrzędnych.
+     * @return true - pozycja jest poprawna, false - nie jest.
+     */
     static boolean validatePosition(Position position, int border) {
         return position.getX() < border && position.getY() < border &&
                 position.getX() >= 0 && position.getY() >= 0;
@@ -72,10 +108,16 @@ public class Position {
         return result;
     }
 
+    /**
+     * Zwraca współrzędną x.
+     */
     public int getX() {
         return x;
     }
 
+    /**
+     * Zwraca współrzędna y.
+     */
     public int getY() {
         return y;
     }

@@ -1,16 +1,30 @@
-package model.game;
+package model.algorithm;
 
-import model.algorithm.Heuristic;
-import model.algorithm.Node;
+import model.game.Block;
+import model.game.PuzzleBoardModel;
+
 import java.util.ArrayList;
 import java.util.List;
 
-class PuzzleBoardNode extends Node {
+/**
+ * Model węzła w algorytmie przeszukiwania, oparty o układankę "N Puzzle."
+ */
+public class PuzzleBoardNode extends Node {
 
+    /**
+     * Koszt przejścia do następnego węzła.
+     */
     private static final int TRAVEL_COST = 1;
+
+    /**
+     * Model układanki węzła.
+     */
     private PuzzleBoardModel puzzleBoardModel;
 
-    PuzzleBoardNode(PuzzleBoardModel puzzleBoardModel, int gCost, Node parent, Heuristic heuristic) {
+    /**
+     * Konstruktor inicjalizujacy początkowe wartosci.
+     */
+    public PuzzleBoardNode(PuzzleBoardModel puzzleBoardModel, int gCost, Node parent, Heuristic heuristic) {
         super(gCost, parent, heuristic);
         this.puzzleBoardModel = puzzleBoardModel;
         this.travelCost = TRAVEL_COST;
@@ -18,6 +32,11 @@ class PuzzleBoardNode extends Node {
         this.fCost = calculateFCost();
     }
 
+    /**
+     * Generuje listę następców dla węzła, tj. możliwe konfiguracje dla możliwych ruchów pustego bloczka na aktualnej
+     * pozcji.
+     * @return Lista następców węzła.
+     */
     @Override
     public List<Node> generateDescendants() {
         List<Node> descendants = new ArrayList<>();
@@ -27,6 +46,11 @@ class PuzzleBoardNode extends Node {
         return descendants;
     }
 
+    /**
+     * Tworzy następców - w postaci możliwych konfiguracji po wszystkich możliwych ruchach pustego bloczka.
+     * @param parentPuzzleBoard Model układanki, dla której liczone będą konfiguracje.
+     * @return Tablica konfiguracji.
+     */
     private PuzzleBoardModel [] generateDescendantPuzzleBoards(PuzzleBoardModel parentPuzzleBoard) {
         Block[] blocks = parentPuzzleBoard.getEmptyBlockNeighbours();
         PuzzleBoardModel[] puzzleBoardModels = new PuzzleBoardModel[blocks.length];
@@ -38,6 +62,10 @@ class PuzzleBoardNode extends Node {
         return puzzleBoardModels;
     }
 
+    /**
+     * Oblicza koszt dotarcia do danego węzła na podstawie zadanej heurystyki.
+     * @return Koszt dotarcia funkcji f(n).
+     */
     @Override
     public int calculateFCost() {
         return gCost + heuristic.calculate(puzzleBoardModel);
@@ -59,11 +87,17 @@ class PuzzleBoardNode extends Node {
         return puzzleBoardModel.hashCode();
     }
 
-    PuzzleBoardModel getPuzzleBoardModel() {
+    /**
+     * Zwraca przechowywany przez węzeł model układanki.
+     */
+    public PuzzleBoardModel getPuzzleBoardModel() {
         return puzzleBoardModel;
     }
 
-    void setPuzzleBoardModel(PuzzleBoardModel puzzleBoardModel) {
+    /**
+     * Ustawia przechowywany przez węzeł model układanki.
+     */
+    public void setPuzzleBoardModel(PuzzleBoardModel puzzleBoardModel) {
         this.puzzleBoardModel = puzzleBoardModel;
     }
 }

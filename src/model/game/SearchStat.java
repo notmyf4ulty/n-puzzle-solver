@@ -1,6 +1,7 @@
 package model.game;
 
 import model.algorithm.Node;
+import model.algorithm.PuzzleBoardNode;
 
 public class SearchStat {
     private Node finishNode;

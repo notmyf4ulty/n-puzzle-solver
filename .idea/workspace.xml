@@ -2,13 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="22f7519f-c5f5-4b0d-8866-ce39ebf663bc" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/AStar.java" afterPath="$PROJECT_DIR$/src/model/algorithm/AStar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/Heuristic.java" afterPath="$PROJECT_DIR$/src/model/algorithm/Heuristic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/IdaStar.java" afterPath="$PROJECT_DIR$/src/model/algorithm/IdaStar.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/InformativeSearch.java" afterPath="$PROJECT_DIR$/src/model/algorithm/InformativeSearch.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/ManhattanDistanceHeristic.java" afterPath="$PROJECT_DIR$/src/model/algorithm/ManhattanDistanceHeristic.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/Node.java" afterPath="$PROJECT_DIR$/src/model/algorithm/Node.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/algorithm/UnorderedBlocksHeuristic.java" afterPath="$PROJECT_DIR$/src/model/algorithm/UnorderedBlocksHeuristic.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/model/game/MeshType.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/model/game/PuzzleBoardNode.java" afterPath="$PROJECT_DIR$/src/model/algorithm/PuzzleBoardNode.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/gui/MeshTypeSettingsPane.java" afterPath="$PROJECT_DIR$/src/gui/MeshTypeSettingsPane.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/Block.java" afterPath="$PROJECT_DIR$/src/model/game/Block.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/BoardDimension.java" afterPath="$PROJECT_DIR$/src/model/game/BoardDimension.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/GameModel.java" afterPath="$PROJECT_DIR$/src/model/game/GameModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/HeuristicType.java" afterPath="$PROJECT_DIR$/src/model/game/HeuristicType.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/MeshLevel.java" afterPath="$PROJECT_DIR$/src/model/game/MeshLevel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/Position.java" afterPath="$PROJECT_DIR$/src/model/game/Position.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/PuzzleBoardModel.java" afterPath="$PROJECT_DIR$/src/model/game/PuzzleBoardModel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/SearchStat.java" afterPath="$PROJECT_DIR$/src/model/game/SearchStat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/model/game/SearchType.java" afterPath="$PROJECT_DIR$/src/model/game/SearchType.java" />
     </list>
     <ignored path="n-puzzle-solver.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,36 +65,25 @@
         <option value="$PROJECT_DIR$/src/gui/PuzzleBoardView.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/AstarNode.java" />
         <option value="$PROJECT_DIR$/src/model/Block.java" />
-        <option value="$PROJECT_DIR$/src/model/game/SearchType.java" />
         <option value="$PROJECT_DIR$/src/model/game/HEURISTIC_TYPE.java" />
-        <option value="$PROJECT_DIR$/src/model/game/HeuristicType.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/HeuristicCalc.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/AlgNode.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/AlgNodex.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/AStarSearch.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/Search.java" />
-        <option value="$PROJECT_DIR$/src/model/game/MeshLevel.java" />
         <option value="$PROJECT_DIR$/src/model/game/SolveType.java" />
         <option value="$PROJECT_DIR$/src/model/Position.java" />
         <option value="$PROJECT_DIR$/src/model/PuzzleBoardModel.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/gui/PuzzleWindow.java" />
         <option value="$PROJECT_DIR$/src/gui/MainMenu.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/SearchStat.java" />
-        <option value="$PROJECT_DIR$/src/model/game/Position.java" />
-        <option value="$PROJECT_DIR$/src/model/game/Block.java" />
-        <option value="$PROJECT_DIR$/src/model/game/BoardDimension.java" />
         <option value="$PROJECT_DIR$/src/model/game/MeshType.java" />
-        <option value="$PROJECT_DIR$/src/model/game/PuzzleBoardModel.java" />
-        <option value="$PROJECT_DIR$/src/model/game/GameModel.java" />
-        <option value="$PROJECT_DIR$/src/model/game/PuzzleBoardNode.java" />
         <option value="$PROJECT_DIR$/src/model/game/SearchStat.java" />
         <option value="$PROJECT_DIR$/src/gui/FieldPane.java" />
         <option value="$PROJECT_DIR$/src/gui/GuiRoot.java" />
         <option value="$PROJECT_DIR$/src/gui/LimitsSettingsPane.java" />
         <option value="$PROJECT_DIR$/src/gui/MainPane.java" />
         <option value="$PROJECT_DIR$/src/gui/PuzzleBoardGrid.java" />
-        <option value="$PROJECT_DIR$/src/gui/MeshTypeSettingsPane.java" />
         <option value="$PROJECT_DIR$/src/gui/PuzzlePane.java" />
         <option value="$PROJECT_DIR$/src/gui/SolveTypeSettingsPane.java" />
         <option value="$PROJECT_DIR$/src/gui/SettingsPane.java" />
@@ -98,6 +94,18 @@
         <option value="$PROJECT_DIR$/src/model/algorithm/ManhattanDistanceHeristic.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/Node.java" />
         <option value="$PROJECT_DIR$/src/model/algorithm/UnorderedBlocksHeuristic.java" />
+        <option value="$PROJECT_DIR$/src/model/game/Block.java" />
+        <option value="$PROJECT_DIR$/src/model/game/BoardDimension.java" />
+        <option value="$PROJECT_DIR$/src/model/game/GameModel.java" />
+        <option value="$PROJECT_DIR$/src/model/game/HeuristicType.java" />
+        <option value="$PROJECT_DIR$/src/model/game/MeshLevel.java" />
+        <option value="$PROJECT_DIR$/src/model/game/Position.java" />
+        <option value="$PROJECT_DIR$/src/model/game/PuzzleBoardNode.java" />
+        <option value="$PROJECT_DIR$/src/gui/MeshTypeSettingsPane.java" />
+        <option value="$PROJECT_DIR$/src/model/game/PuzzleBoardModel.java" />
+        <option value="$PROJECT_DIR$/src/model/algorithm/PuzzleBoardNode.java" />
+        <option value="$PROJECT_DIR$/src/model/game/SearchType.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -204,24 +212,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="algorithm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="n-puzzle-solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="n-puzzle-solver" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -530,13 +520,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32886904" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -565,7 +555,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/model/game/GameModel.java</url>
-          <line>159</line>
+          <line>258</line>
           <properties />
           <option name="timeStamp" value="97" />
         </line-breakpoint>
@@ -579,15 +569,12 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/model/algorithm/AlgNodex.java" />
     <entry file="file://$PROJECT_DIR$/src/gui/MainPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4125#4252#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -598,8 +585,6 @@
           <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4125#4252#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -631,8 +616,8 @@
         <state relative-caret-position="162">
           <caret line="9" column="39" selection-start-line="9" selection-start-column="39" selection-end-line="9" selection-end-column="39" />
           <folding>
-            <element signature="e#1633#1634#0" expanded="false" />
-            <element signature="e#1664#1665#0" expanded="false" />
+            <element signature="e#2828#2829#0" expanded="true" />
+            <element signature="e#2859#2860#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -657,10 +642,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="19" column="0" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
-          <folding>
-            <element signature="e#5095#5096#0" expanded="true" />
-            <element signature="e#5128#5129#0" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -686,8 +668,6 @@
           <caret line="22" column="29" selection-start-line="22" selection-start-column="29" selection-end-line="22" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4125#4252#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -723,99 +703,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/model/algorithm/AStarSearch.java" />
     <entry file="file://$PROJECT_DIR$/src/model/algorithm/AlgNodex.java" />
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="13" column="0" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/MainMenu.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/game/HeuristicType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/MeshLevel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/game/SolveType.java" />
-    <entry file="file://$PROJECT_DIR$/src/model/game/MeshType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/Block.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="59" column="16" selection-start-line="59" selection-start-column="16" selection-end-line="59" selection-end-column="16" />
-          <folding>
-            <element signature="e#1633#1634#0" expanded="false" />
-            <element signature="e#1664#1665#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/SearchType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/PuzzleBoardModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="125" column="14" selection-start-line="125" selection-start-column="14" selection-end-line="125" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/GameModel.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
-          <folding>
-            <element signature="e#5095#5096#0" expanded="true" />
-            <element signature="e#5128#5129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/PuzzleBoardNode.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="312">
-          <caret line="66" column="49" selection-start-line="66" selection-start-column="49" selection-end-line="66" selection-end-column="49" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#2001#2002#0" expanded="false" />
-            <element signature="e#2040#2041#0" expanded="false" />
-            <element signature="e#2107#2108#0" expanded="false" />
-            <element signature="e#2163#2164#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/SearchStat.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="21" column="41" selection-start-line="21" selection-start-column="41" selection-end-line="21" selection-end-column="41" />
-          <folding>
-            <element signature="e#1961#1962#0" expanded="true" />
-            <element signature="e#1993#1994#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/FieldPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="738">
@@ -831,18 +720,6 @@
         <state relative-caret-position="233">
           <caret line="54" column="30" selection-start-line="54" selection-start-column="30" selection-end-line="54" selection-end-column="30" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/MainPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1169">
-          <caret line="136" column="91" selection-start-line="136" selection-start-column="91" selection-end-line="136" selection-end-column="91" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4125#4252#0" expanded="true" />
-            <element signature="e#4251#4252#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -873,45 +750,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/Position.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/model/game/BoardDimension.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/gui/SolveTypeSettingsPane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-55">
           <caret line="113" column="67" selection-start-line="113" selection-start-column="67" selection-end-line="113" selection-end-column="67" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/MeshTypeSettingsPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4410">
-          <caret line="251" column="61" selection-start-line="251" selection-start-column="61" selection-end-line="251" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/gui/SettingsPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1097">
-          <caret line="85" column="32" selection-start-line="85" selection-start-column="32" selection-end-line="85" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -975,6 +818,149 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/Block.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1151">
+          <caret line="123" column="7" selection-start-line="123" selection-start-column="7" selection-end-line="123" selection-end-column="7" />
+          <folding>
+            <element signature="e#2828#2829#0" expanded="true" />
+            <element signature="e#2859#2860#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/MeshType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="12" selection-start-line="2" selection-start-column="12" selection-end-line="2" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/Position.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2034">
+          <caret line="119" column="7" selection-start-line="119" selection-start-column="7" selection-end-line="119" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/HeuristicType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="66" selection-start-line="3" selection-start-column="66" selection-end-line="3" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/BoardDimension.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar:///usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext/jfxrt.jar!/com/sun/javafx/binding/ExpressionHelper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="256" column="0" selection-start-line="256" selection-start-column="0" selection-end-line="256" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/MainPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/SettingsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gui/MeshTypeSettingsPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="62" column="52" selection-start-line="62" selection-start-column="52" selection-end-line="62" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/algorithm/PuzzleBoardNode.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="98" column="7" selection-start-line="98" selection-start-column="7" selection-end-line="98" selection-end-column="7" />
+          <folding>
+            <element signature="e#3121#3122#0" expanded="true" />
+            <element signature="e#3177#3178#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/GameModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="98" column="40" selection-start-line="98" selection-start-column="40" selection-end-line="98" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/PuzzleBoardModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="126" column="11" selection-start-line="126" selection-start-column="11" selection-end-line="126" selection-end-column="11" />
+          <folding>
+            <element signature="e#4240#4241#0" expanded="true" />
+            <element signature="e#4296#4297#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/SearchStat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="53" column="41" selection-start-line="53" selection-start-column="41" selection-end-line="53" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/MeshLevel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="4" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/model/game/SearchType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="3" column="89" selection-start-line="3" selection-start-column="89" selection-end-line="3" selection-end-column="89" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="8" column="37" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>

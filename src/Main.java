@@ -5,6 +5,9 @@ import javafx.stage.Stage;
 
 public class Main extends Application{
 
+    /**
+     * Generuje interfejs użytkownika
+     */
     @Override
     public void start(Stage stage) throws Exception {
         GuiRoot guiRoot = GuiRoot.getInstance();

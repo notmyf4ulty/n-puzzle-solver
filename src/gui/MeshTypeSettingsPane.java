@@ -55,6 +55,7 @@ class MeshTypeSettingsPane extends AnchorPane {
         AnchorPane.setRightAnchor(meshTypePane,5.0);
         AnchorPane.setLeftAnchor(meshTypePane,5.0);
 
+        GridPane meshSettingsPane = createMeshSettingsPane();
         GridPane meshTypeRadioGroupPane = createMeshTypeRadioGroupPane();
         Label meshTypeLabel = new Label("Rodzaj pomieszania:");
 
@@ -65,7 +66,6 @@ class MeshTypeSettingsPane extends AnchorPane {
         meshTypeChoicePane.getChildren().add(meshTypeLabel);
         meshTypeChoicePane.getChildren().add(meshTypeRadioGroupPane);
 
-        GridPane meshSettingsPane = createMeshSettingsPane();
 
         meshTypePane.add(meshTypeChoicePane,0,0);
         meshTypePane.add(meshSettingsPane,0,1);
