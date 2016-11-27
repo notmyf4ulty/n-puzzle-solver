@@ -1,5 +1,7 @@
 package model.algorithm;
 
+import model.game.SearchStat;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,8 +10,8 @@ public class AStar extends InformativeSearch {
     List<Node> openList;
     List<Node> closedList;
 
-    public AStar(Node rootNode, Node targetNode) {
-        super(rootNode, targetNode);
+    public AStar(Node rootNode, Node targetNode, int nodesLimit) {
+        super(rootNode, targetNode, nodesLimit);
         openList = new ArrayList<>();
         closedList = new ArrayList<>();
         openList.add(rootNode);
@@ -18,14 +20,16 @@ public class AStar extends InformativeSearch {
     @Override
     public SearchStat search() {
         Node currentNode = null;
+        int nodesLimit = this.nodesLimit;
         while (!openList.isEmpty()) {
             currentNode = getLowestFCostAlgNode();
             openList.remove(currentNode);
             closedList.add(currentNode);
             if (isTargetConfiguration(currentNode)) {
-                return new SearchStat(currentNode);
+                return new SearchStat(currentNode, this.nodesLimit - nodesLimit);
             } else {
                 for (Node descendantNode : currentNode.generateDescendants()) {
+                    nodesLimit--;
                     if (openList.contains(descendantNode)) {
                         Node containedNode = openList.get(openList.indexOf(descendantNode));
                         if (descendantNode.getgCost() < containedNode.getgCost()) {
@@ -44,6 +48,9 @@ public class AStar extends InformativeSearch {
                         }
                     } else {
                         openList.add(descendantNode);
+                    }
+                    if (nodesLimit <= 0) {
+                        return new SearchStat(null,0);
                     }
                 }
             }

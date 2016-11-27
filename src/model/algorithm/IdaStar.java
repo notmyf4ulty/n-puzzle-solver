@@ -1,30 +1,35 @@
 package model.algorithm;
 
-import java.util.LinkedList;
+import model.game.SearchStat;
+
 import java.util.List;
 
-/**
- * Created by przemek on 25.11.16.
- */
 public class IdaStar extends InformativeSearch{
 
-    public IdaStar(Node rootNode, Node targetNode) {
-        super(rootNode, targetNode);
+    public IdaStar(Node rootNode, Node targetNode, int nodesLimit) {
+        super(rootNode, targetNode, nodesLimit);
     }
 
     @Override
     public SearchStat search() {
-        int limit = rootNode.getfCost();
+        int fCostLimit = rootNode.getfCost();
+        int oldNodesLimit = this.nodesLimit;
         Node resultNode;
         do {
-            resultNode = depthFirstSearch(rootNode, limit);
-            int newLimit = resultNode.getfCost();
-            if (newLimit > limit) {
-                limit = newLimit;
+            resultNode = depthFirstSearch(rootNode, fCostLimit);
+            if (resultNode != null) {
+                int newLimit = resultNode.getfCost();
+                if (newLimit > fCostLimit) {
+                    fCostLimit = newLimit;
+                }
+            } else {
+                return new SearchStat(null,0);
             }
-        } while (!isTargetConfiguration(resultNode) && (limit < 10000));
-        SearchStat searchStat = new SearchStat(resultNode);
-        return searchStat;
+            if (!isTargetConfiguration(resultNode)) {
+                nodesLimit = oldNodesLimit;
+            }
+        } while (!isTargetConfiguration(resultNode));
+        return new SearchStat(resultNode,oldNodesLimit - nodesLimit);
     }
 
     private Node depthFirstSearch(Node rootNode, int limit) {
@@ -37,8 +42,11 @@ public class IdaStar extends InformativeSearch{
                     if (isTargetConfiguration(descendant)) {
                         return descendant;
                     } else {
+                        nodesLimit--;
                         lastDescendatsDescendant = depthFirstSearch(descendant, limit);
-                        if (isTargetConfiguration(lastDescendatsDescendant)) {
+                        if (lastDescendatsDescendant == null) {
+                            return null;
+                        } else if (isTargetConfiguration(lastDescendatsDescendant)) {
                             return lastDescendatsDescendant;
                         }
                     }
@@ -53,6 +61,9 @@ public class IdaStar extends InformativeSearch{
                             lastDescendatsDescendant.getfCost() < lowestFCostAboveLimitNode.getfCost()) {
                         lowestFCostAboveLimitNode = lastDescendatsDescendant;
                     }
+                }
+                if (nodesLimit < 0) {
+                    return null;
                 }
             }
             return lowestFCostAboveLimitNode;

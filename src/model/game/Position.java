@@ -2,23 +2,20 @@ package model.game;
 
 import java.util.ArrayList;
 
-/**
- * Created by przemek on 20.11.16.
- */
 public class Position {
     private final int x;
     private final int y;
 
-    public Position(int x, int y) {
+    Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Position(Position position) {
+    Position(Position position) {
         this(position.getX(),position.getY());
     }
 
-    public boolean isOneUnitDistance(Position position) {
+    boolean isOneUnitDistance(Position position) {
         boolean isXSame = this.x == position.x;
         boolean isYSame = this.y == position.y;
         boolean isOneXDistance = Math.abs(this.x - position.x) == 1;
@@ -27,7 +24,7 @@ public class Position {
         return isOneXDistance && isYSame || isXSame && isOneYDistance;
     }
 
-    public Position [] getNeighbouringPositions(int border) {
+    Position [] getNeighbouringPositions(int border) {
         Position [] positions = new Position[4];
         positions[0] = new Position(x, y - 1);
         positions[1] = new Position(x, y + 1);
@@ -48,13 +45,14 @@ public class Position {
         return candidatesPositionsArray;
     }
 
-    public static boolean validatePosition(Position position, int border) {
-        if (position.getX() < border && position.getY() < border &&
-                position.getX() >= 0 && position.getY() >= 0) {
-            return true;
-        } else {
-            return false;
-        }
+    static boolean validatePosition(Position position, int border) {
+        return position.getX() < border && position.getY() < border &&
+                position.getX() >= 0 && position.getY() >= 0;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + x + ", " + y + ")";
     }
 
     @Override

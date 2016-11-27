@@ -56,19 +56,19 @@ public class GameModel {
 
         switch (searchType) {
             case A_STAR:
-                informativeSearch = new AStar(rootNode,targetNode);
+                informativeSearch = new AStar(rootNode, targetNode, nodeLimit);
                 break;
             case IDA_STAR:
-                informativeSearch = new IdaStar(rootNode,targetNode);
+                informativeSearch = new IdaStar(rootNode, targetNode, nodeLimit);
                 break;
             default:
-                informativeSearch = new AStar(rootNode,targetNode);
+                informativeSearch = new AStar(rootNode, targetNode, nodeLimit);
                 break;
         }
 
         searchStat = informativeSearch.search();
 
-        if (searchStat != null) {
+        if (searchStat != null && !searchStat.isNodesLimitError()) {
             lastComputationFailFlag = false;
             PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
             if (informativeSearchResultNode != null) {

@@ -7,7 +7,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import model.algorithm.SearchStat;
+import model.game.SearchStat;
 import model.game.BoardDimension;
 import model.game.GameModel;
 import java.util.concurrent.*;
@@ -92,12 +92,19 @@ public class MainPane extends VBox {
             future.get(gameModel.getTimeLimit(), TimeUnit.SECONDS);
             long solveFinishTime = System.currentTimeMillis();
             String resultMessage = "";
-            if (!gameModel.isLastComputationFailFlag()) {
                 SearchStat searchStat = gameModel.getSearchStat();
-                resultMessage = "Rozwiązano zadanie\n";
-                resultMessage += "Czas rozwiązania: ";
-                resultMessage += (((double)(solveFinishTime - solveStartTime)) / 1000) + "s\n";
-                resultMessage += "Długość ścieżki: " + searchStat.getPathDepth();
+            if (searchStat !=  null) {
+                if (!searchStat.isNodesLimitError()) {
+                    resultMessage = "Rozwiązano zadanie\n";
+                    resultMessage += "Czas rozwiązania: ";
+                    resultMessage += (((double) (solveFinishTime - solveStartTime)) / 1000) + "s\n";
+                    resultMessage += "Liczba rozwiniętych węzłów: " + searchStat.getVisitedNodesNumber() + "\n";
+                    resultMessage += "Długość ścieżki: " + searchStat.getPathDepth() +"\n";
+                    resultMessage += "Rozwinięta ścieżka:\n";
+                    resultMessage += searchStat.printPath();
+                } else {
+                    resultMessage = "Przekroczono limit rozwiniętych węzłów.";
+                }
             } else {
                 resultMessage = "Błąd obliczeń";
             }

@@ -34,6 +34,10 @@ public abstract class Node {
         return travelCost;
     }
 
+    public boolean hasParent() {
+        return parent != null;
+    }
+
     public Node getParent() {
         return parent;
     }
