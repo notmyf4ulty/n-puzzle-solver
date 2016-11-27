@@ -44,7 +44,7 @@ public class PuzzleBoardModel extends Observable {
         Block [][] board = new Block[boardDimension][boardDimension];
         for (int i = 0; i < boardDimension; i++) {
             for (int j = 0; j < boardDimension; j++) {
-                int number = i + (j * 3);
+                int number = i + (j * boardDimension);
                 board[i][j] = new Block(new Position(i,j),number);
             }
         }
