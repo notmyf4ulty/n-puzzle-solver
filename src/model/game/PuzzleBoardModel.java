@@ -14,7 +14,7 @@ public class PuzzleBoardModel extends Observable {
     PuzzleBoardModel(int boardDimension) {
         this.boardDimension = boardDimension;
         board = generateBoard();
-        emptyBlock = board[0][0];
+        emptyBlock = findBlock(0);
     }
 
     private Block [][] generateBoard() {
@@ -41,7 +41,7 @@ public class PuzzleBoardModel extends Observable {
             board[boardBlock2.getPosition().getX()][boardBlock2.getPosition().getY()]
                     = boardBlock2;
         }
-
+        emptyBlock = findBlock(0);
     }
 
     void moveEmptyBlockUp() {
@@ -76,6 +76,7 @@ public class PuzzleBoardModel extends Observable {
 
     void interchangeEmptyBlock(Block block) {
         interchangeBlocks(emptyBlock,block);
+        emptyBlock = findBlock(0);
     }
 
     Block []  getEmptyBlockNeighbours() {
@@ -108,30 +109,17 @@ public class PuzzleBoardModel extends Observable {
             Block[] neighbours = getEmptyBlockNeighbours();
             interchangeEmptyBlock(neighbours[ThreadLocalRandom.current().nextInt(0,neighbours.length)]);
         }
-        emptyBlock = findBlock(0);
         Platform.runLater(() -> {
             setChanged();
             notifyObservers();
         });
     }
 
-    public void changeDimension(int dimension) {
-
-    }
-
-    public void printBoard() {
-        for (int i = 0; i < boardDimension; i++) {
-            for (int j = 0; j < boardDimension; j++) {
-                System.out.print(board[j][i].getNumber());
-            }
-            System.out.println();
-        }
-    }
-
     PuzzleBoardModel getCopy() {
         PuzzleBoardModel puzzleBoardModel = new PuzzleBoardModel(boardDimension);
         puzzleBoardModel.board = getCopyBoard();
-        puzzleBoardModel.emptyBlock = puzzleBoardModel.board[emptyBlock.getPosition().getX()][emptyBlock.getPosition().getY()];
+        Position emptyBlockPosition = findBlock(0).getPosition();
+        puzzleBoardModel.emptyBlock = puzzleBoardModel.board[emptyBlockPosition.getX()][emptyBlockPosition.getY()];
         return puzzleBoardModel;
     }
 
@@ -145,8 +133,8 @@ public class PuzzleBoardModel extends Observable {
         return copyBoard;
     }
 
-    public Block getEmptyBlock() {
-        return new Block(emptyBlock);
+    Block getEmptyBlock() {
+        return emptyBlock;
     }
 
     void setBoard(Block[][] board) {
@@ -165,8 +153,8 @@ public class PuzzleBoardModel extends Observable {
 
         PuzzleBoardModel that = (PuzzleBoardModel) o;
 
-        if (!Arrays.deepEquals(board, that.board)) return false;
-        return emptyBlock.equals(that.emptyBlock);
+        return Arrays.deepEquals(board, that.board)
+                && emptyBlock.equals(that.emptyBlock);
 
     }
 

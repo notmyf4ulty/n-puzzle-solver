@@ -10,7 +10,6 @@ public class GameModel {
     private HeuristicType heuristicType;
     private SearchType searchType;
     private MeshLevel meshLevel;
-    private MeshType meshType;
     private SearchStat searchStat;
     private int timeLimit;
     private int nodeLimit;
@@ -72,7 +71,6 @@ public class GameModel {
             if (informativeSearchResultNode != null) {
                 puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
             }
-        } else {
         }
     }
 
@@ -145,25 +143,16 @@ public class GameModel {
         return puzzleBoardModel;
     }
 
-
-
     public void setHeuristicType(HeuristicType heuristicType) {
         this.heuristicType = heuristicType;
     }
-
 
     public void setSearchType(SearchType searchType) {
         this.searchType = searchType;
     }
 
-
     public void setMeshLevel(MeshLevel meshLevel) {
         this.meshLevel = meshLevel;
-    }
-
-
-    public void setMeshType(MeshType meshType) {
-        this.meshType = meshType;
     }
 
     public SearchStat getSearchStat() {

@@ -7,7 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import model.game.GameModel;
 import model.game.MeshLevel;
-import model.game.MeshType;
 
 class MeshTypeSettingsPane extends AnchorPane {
     private VBox automaticMeshSettingsPane;
@@ -69,12 +68,10 @@ class MeshTypeSettingsPane extends AnchorPane {
             RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
             switch (selectedRadioButton.getText()) {
                 case manualMeshType:
-                    gameModel1.setMeshType(MeshType.MANUAL);
                     manualMeshSettingsPane.setDisable(false);
                     automaticMeshSettingsPane.setDisable(true);
                     break;
                 case automaticMeshType:
-                    gameModel1.setMeshType(MeshType.AUTOMATIC);
                     manualMeshSettingsPane.setDisable(true);
                     automaticMeshSettingsPane.setDisable(false);
                     break;

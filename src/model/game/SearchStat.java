@@ -5,14 +5,12 @@ import model.algorithm.Node;
 public class SearchStat {
     private Node finishNode;
     private int pathDepth;
-    private int cost;
     private boolean nodesLimitError;
     private int visitedNodesNumber;
 
     public SearchStat(Node node, int visitedNodesNumber) {
         if (node != null) {
             this.finishNode = node;
-            this.cost = node.getfCost();
             this.pathDepth = searchParent(node);
             this.visitedNodesNumber = visitedNodesNumber;
         } else {
@@ -46,7 +44,8 @@ public class SearchStat {
     }
 
     private String getNodeEmptyBlockPosition(Node node) {
-        return ((PuzzleBoardNode) node).getPuzzleBoardModel().getEmptyBlock().getPosition().toString();
+        PuzzleBoardNode puzzleBoardNode = (PuzzleBoardNode) node;
+        return puzzleBoardNode.getPuzzleBoardModel().getEmptyBlock().getPosition().toString();
     }
 
     Node getFinishNode() {
@@ -55,10 +54,6 @@ public class SearchStat {
 
     public int getPathDepth() {
         return pathDepth;
-    }
-
-    public int getCost() {
-        return cost;
     }
 
     public boolean isNodesLimitError() {
