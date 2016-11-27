@@ -14,8 +14,8 @@ import java.util.concurrent.*;
 
 public class MainPane extends VBox {
     private GameModel gameModel;
-    PuzzlePane puzzlePane;
-    SettingsPane settingsPane;
+    private PuzzlePane puzzlePane;
+    private SettingsPane settingsPane;
 
     public MainPane() {
         gameModel = GameModel.getInstance();
@@ -89,7 +89,7 @@ public class MainPane extends VBox {
 
         try {
             long solveStartTime = System.currentTimeMillis();
-            future.get(60, TimeUnit.SECONDS);
+            future.get(gameModel.getTimeLimit(), TimeUnit.SECONDS);
             long solveFinishTime = System.currentTimeMillis();
             String resultMessage = "";
             if (!gameModel.isLastComputationFailFlag()) {
@@ -107,7 +107,7 @@ public class MainPane extends VBox {
         } catch (ExecutionException e) {
             e.printStackTrace();
         } catch (TimeoutException e) {
-            showMessageDialog("Przekroczono czas obliczeń, t > 60s");
+            showMessageDialog("Przekroczono czas obliczeń, t >" + gameModel.getTimeLimit() + "s");
         }
     }
 

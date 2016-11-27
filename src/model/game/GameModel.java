@@ -13,6 +13,8 @@ public class GameModel {
     private MeshType meshType;
     private SearchStat searchStat;
     private boolean lastComputationFailFlag;
+    private int timeLimit;
+    private int nodeLimit;
 
     private GameModel() {
         puzzleBoardModel = new PuzzleBoardModel(3);
@@ -21,6 +23,8 @@ public class GameModel {
         heuristicType = HeuristicType.UNORDERED_BLOCKS;
         searchType = SearchType.A_STAR;
         meshLevel = MeshLevel.LOW;
+        timeLimit = 60;
+        nodeLimit = 10000;
     }
 
     public static GameModel getInstance() {
@@ -190,5 +194,21 @@ public class GameModel {
 
     public void setLastComputationFailFlag(boolean lastComputationFailFlag) {
         this.lastComputationFailFlag = lastComputationFailFlag;
+    }
+
+    public int getTimeLimit() {
+        return timeLimit;
+    }
+
+    public void setTimeLimit(int timeLimit) {
+        this.timeLimit = timeLimit;
+    }
+
+    public int getNodeLimit() {
+        return nodeLimit;
+    }
+
+    public void setNodeLimit(int nodeLimit) {
+        this.nodeLimit = nodeLimit;
     }
 }

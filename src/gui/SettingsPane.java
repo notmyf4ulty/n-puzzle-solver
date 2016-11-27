@@ -24,11 +24,14 @@ class SettingsPane extends GridPane {
         GridPane.getHgrow(solveTypeSettingsPane);
         MeshTypeSettingsPane meshTypeSettingsPane = new MeshTypeSettingsPane();
         meshTypeSettingsPane.setMaxWidth(Double.MAX_VALUE);
+        LimitsSettingsPane limitsSettingsPane = new LimitsSettingsPane();
+        limitsSettingsPane.setMaxWidth(Double.MAX_VALUE);
         VBox boardDomensionRadioGroupPane = createBoardDimensionRadioGroupPane();
         boardDomensionRadioGroupPane.setMaxWidth(Double.MAX_VALUE);
         add(solveTypeSettingsPane,0,0);
         add(meshTypeSettingsPane,0,1);
-        add(boardDomensionRadioGroupPane,0,2);
+        add(limitsSettingsPane,0,2);
+        add(boardDomensionRadioGroupPane,0,3);
     }
 
     private VBox createBoardDimensionRadioGroupPane() {
@@ -62,7 +65,7 @@ class SettingsPane extends GridPane {
         Label dimensionInfoLabel = new Label("Wymiar układanki:");
 
         VBox mainPane = new VBox();
-        mainPane.setPadding(new Insets(10));
+        mainPane.setPadding(new Insets(5));
         mainPane.setAlignment(Pos.CENTER);
         mainPane.getChildren().addAll(dimensionInfoLabel,
                 boardDimensionRadioGroupPane);
@@ -70,7 +73,7 @@ class SettingsPane extends GridPane {
         return mainPane;
     }
 
-    public ToggleGroup getToggleGroup() {
+    ToggleGroup getToggleGroup() {
         return toggleGroup;
     }
 }

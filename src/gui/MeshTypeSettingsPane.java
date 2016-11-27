@@ -33,7 +33,6 @@ class MeshTypeSettingsPane extends AnchorPane {
         secondRowConstraints.setPercentHeight(70);
         meshTypePane.getRowConstraints().addAll(firstRowConstraints,secondRowConstraints);
         AnchorPane.setRightAnchor(meshTypePane,5.0);
-        AnchorPane.setBottomAnchor(meshTypePane,5.0);
         AnchorPane.setLeftAnchor(meshTypePane,5.0);
 
         GridPane meshSettingsPane = createMeshSettingsPane();
@@ -109,11 +108,11 @@ class MeshTypeSettingsPane extends AnchorPane {
         AnchorPane.setLeftAnchor(meshSettingsPane,5.0);
         manualMeshSettingsPane = createManualMeshButtonsPane();
         manualMeshSettingsPane
-                .setStyle("-fx-border-color: black; -fx-border-width: 1 0 1 1; -fx-border-style: solid;");
+                .setStyle("-fx-border-color: black; -fx-border-width: 1 0 2 1; -fx-border-style: solid;");
         manualMeshSettingsPane.setPadding(new Insets(5,5,5,5));
         automaticMeshSettingsPane = createMeshLevelRadioGroupPane();
         automaticMeshSettingsPane
-                .setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;");
+                .setStyle("-fx-border-color: black; -fx-border-width: 1 1 2 1; -fx-border-style: solid;");
         automaticMeshSettingsPane.setPadding(new Insets(5,5,5,5));
         meshSettingsPane.add(manualMeshSettingsPane,0,1);
         meshSettingsPane.add(automaticMeshSettingsPane,1,1);
