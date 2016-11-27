@@ -1,7 +1,5 @@
 package gui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -66,23 +64,20 @@ class MeshTypeSettingsPane extends AnchorPane {
         RadioButton automaticChoice = new RadioButton(automaticMeshType);
         automaticChoice.setToggleGroup(toggleGroup);
 
-        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                GameModel gameModel = GameModel.getInstance();
-                RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-                switch (selectedRadioButton.getText()) {
-                    case manualMeshType:
-                        gameModel.setMeshType(MeshType.MANUAL);
-                        manualMeshSettingsPane.setDisable(false);
-                        automaticMeshSettingsPane.setDisable(true);
-                        break;
-                    case automaticMeshType:
-                        gameModel.setMeshType(MeshType.AUTOMATIC);
-                        manualMeshSettingsPane.setDisable(true);
-                        automaticMeshSettingsPane.setDisable(false);
-                        break;
-                }
+        toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
+            GameModel gameModel1 = GameModel.getInstance();
+            RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
+            switch (selectedRadioButton.getText()) {
+                case manualMeshType:
+                    gameModel1.setMeshType(MeshType.MANUAL);
+                    manualMeshSettingsPane.setDisable(false);
+                    automaticMeshSettingsPane.setDisable(true);
+                    break;
+                case automaticMeshType:
+                    gameModel1.setMeshType(MeshType.AUTOMATIC);
+                    manualMeshSettingsPane.setDisable(true);
+                    automaticMeshSettingsPane.setDisable(false);
+                    break;
             }
         });
         meshTypeRadioGroupPane.add(manualChoice,0,0);
@@ -172,14 +167,11 @@ class MeshTypeSettingsPane extends AnchorPane {
         RadioButton highChoice = new RadioButton(highMeshLevel);
         highChoice.setToggleGroup(toggleGroup);
 
-        toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) -> {
-            setMeshAccordingToModel((RadioButton) toggleGroup.getSelectedToggle());
-        });
+        toggleGroup.selectedToggleProperty().addListener((observableValue, toggle, t1) ->
+                setMeshAccordingToModel((RadioButton) toggleGroup.getSelectedToggle()));
 
         Button meshButton = new Button("Mieszaj");
-        meshButton.setOnAction(event -> {
-            gameModel.meshPuzzleBoardModel();
-        });
+        meshButton.setOnAction(event -> gameModel.meshPuzzleBoardModel());
         meshButton.setMaxWidth(Double.MAX_VALUE);
 
         meshLevelRadioGroupPane.getChildren().add(automaticMeshLevelLabel);

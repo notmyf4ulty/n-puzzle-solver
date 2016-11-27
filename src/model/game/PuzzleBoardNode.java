@@ -2,16 +2,15 @@ package model.game;
 
 import model.algorithm.Heuristic;
 import model.algorithm.Node;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class PuzzleBoardNode extends Node {
+class PuzzleBoardNode extends Node {
 
     private static final int TRAVEL_COST = 1;
-    PuzzleBoardModel puzzleBoardModel;
+    private PuzzleBoardModel puzzleBoardModel;
 
-    public PuzzleBoardNode(PuzzleBoardModel puzzleBoardModel, int gCost, Node parent, Heuristic heuristic) {
+    PuzzleBoardNode(PuzzleBoardModel puzzleBoardModel, int gCost, Node parent, Heuristic heuristic) {
         super(gCost, parent, heuristic);
         this.puzzleBoardModel = puzzleBoardModel;
         this.travelCost = TRAVEL_COST;
@@ -60,7 +59,7 @@ public class PuzzleBoardNode extends Node {
         return puzzleBoardModel.hashCode();
     }
 
-    public PuzzleBoardModel getPuzzleBoardModel() {
+    PuzzleBoardModel getPuzzleBoardModel() {
         return puzzleBoardModel;
     }
 }

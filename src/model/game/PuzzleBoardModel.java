@@ -108,6 +108,7 @@ public class PuzzleBoardModel extends Observable {
             Block[] neighbours = getEmptyBlockNeighbours();
             interchangeEmptyBlock(neighbours[ThreadLocalRandom.current().nextInt(0,neighbours.length)]);
         }
+        emptyBlock = findBlock(0);
         Platform.runLater(() -> {
             setChanged();
             notifyObservers();

@@ -36,7 +36,7 @@ public class SearchStat {
         String path = getNodeEmptyBlockPosition(traversedNode);
         while (traversedNode.hasParent()) {
             traversedNode = traversedNode.getParent();
-            path += getNodeEmptyBlockPosition(traversedNode);// + path;
+            path = getNodeEmptyBlockPosition(traversedNode) + path;
             positionCounter++;
             if(positionCounter % 4 == 0) {
                 path += "\n";

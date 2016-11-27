@@ -13,7 +13,7 @@ public class IdaStar extends InformativeSearch{
     @Override
     public SearchStat search() {
         int fCostLimit = rootNode.getfCost();
-        int oldNodesLimit = this.nodesLimit;
+        int oldNodesLimit = nodesLimit;
         Node resultNode;
         do {
             resultNode = depthFirstSearch(rootNode, fCostLimit);
@@ -33,6 +33,7 @@ public class IdaStar extends InformativeSearch{
     }
 
     private Node depthFirstSearch(Node rootNode, int limit) {
+        nodesLimit--;
         Node lowestFCostAboveLimitNode = null;
         List<Node> descendants = rootNode.generateDescendants();
         if (!descendants.isEmpty()) {
@@ -42,7 +43,6 @@ public class IdaStar extends InformativeSearch{
                     if (isTargetConfiguration(descendant)) {
                         return descendant;
                     } else {
-                        nodesLimit--;
                         lastDescendatsDescendant = depthFirstSearch(descendant, limit);
                         if (lastDescendatsDescendant == null) {
                             return null;

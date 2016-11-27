@@ -9,11 +9,9 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import model.game.BoardDimension;
-import model.game.GameModel;
 
 class SettingsPane extends GridPane {
-    final ToggleGroup toggleGroup = new ToggleGroup();
+    private final ToggleGroup toggleGroup = new ToggleGroup();
 
     SettingsPane() {
         ColumnConstraints columnConstraints = new ColumnConstraints();

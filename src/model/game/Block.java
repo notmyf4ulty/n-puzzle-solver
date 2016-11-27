@@ -5,19 +5,19 @@ public class Block {
     private Position targetPosition;
     private final int number;
 
-    public Block(Position position, int number) {
+    Block(Position position, int number) {
         this.position = position;
         this.targetPosition = position;
         this.number = number;
     }
 
-    public Block(Block block) {
+    Block(Block block) {
         this.position = new Position(block.getPosition());
         this.targetPosition = new Position(block.getTargetPosition());
         this.number = block.getNumber();
     }
 
-    public boolean interchangeOnePosition(Block block) {
+    boolean interchangeOnePosition(Block block) {
         if (position.isOneUnitDistance(block.getPosition())) {
             interchange(block);
             return true;
@@ -26,7 +26,7 @@ public class Block {
         }
     }
 
-    public void interchange(Block block) {
+    private void interchange(Block block) {
         Position thisPosition = new Position(this.position);
         this.position = new Position(block.getPosition());
         block.setPosition(thisPosition);
@@ -43,9 +43,9 @@ public class Block {
 
         Block block = (Block) o;
 
-        if (number != block.number) return false;
-        if (!position.equals(block.position)) return false;
-        return targetPosition.equals(block.targetPosition);
+        return number == block.number &&
+                position.equals(block.position) &&
+                targetPosition.equals(block.targetPosition);
 
     }
 
@@ -61,7 +61,7 @@ public class Block {
         return position;
     }
 
-    public void setPosition(Position position) {
+    private void setPosition(Position position) {
         this.position = position;
     }
 

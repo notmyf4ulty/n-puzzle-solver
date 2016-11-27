@@ -91,7 +91,7 @@ public class MainPane extends VBox {
             long solveStartTime = System.currentTimeMillis();
             future.get(gameModel.getTimeLimit(), TimeUnit.SECONDS);
             long solveFinishTime = System.currentTimeMillis();
-            String resultMessage = "";
+            String resultMessage;
                 SearchStat searchStat = gameModel.getSearchStat();
             if (searchStat !=  null) {
                 if (!searchStat.isNodesLimitError()) {
@@ -124,13 +124,5 @@ public class MainPane extends VBox {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
-
-    public PuzzlePane getPuzzlePane() {
-        return puzzlePane;
-    }
-
-    public SettingsPane getSettingsPane() {
-        return settingsPane;
     }
 }

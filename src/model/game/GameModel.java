@@ -12,7 +12,6 @@ public class GameModel {
     private MeshLevel meshLevel;
     private MeshType meshType;
     private SearchStat searchStat;
-    private boolean lastComputationFailFlag;
     private int timeLimit;
     private int nodeLimit;
 
@@ -41,16 +40,16 @@ public class GameModel {
 
         switch (heuristicType) {
             case UNORDERED_BLOCKS:
-                rootNode = new PuzzleBoardNode(puzzleBoardModel,0,null, new UnorderedBlocksHeuristic());
-                targetNode = new PuzzleBoardNode(targetPuzzleBoardModel,0,null, new UnorderedBlocksHeuristic());
+                rootNode = new PuzzleBoardNode(puzzleBoardModel, 0, null, new UnorderedBlocksHeuristic());
+                targetNode = new PuzzleBoardNode(targetPuzzleBoardModel, 0, null, new UnorderedBlocksHeuristic());
                 break;
             case MANHATTAN_DISTANCE:
-                rootNode = new PuzzleBoardNode(puzzleBoardModel,0,null,new ManhattanDistanceHeristic());
-                targetNode = new PuzzleBoardNode(targetPuzzleBoardModel,0,null,new ManhattanDistanceHeristic());
+                rootNode = new PuzzleBoardNode(puzzleBoardModel, 0, null,new ManhattanDistanceHeristic());
+                targetNode = new PuzzleBoardNode(targetPuzzleBoardModel, 0, null,new ManhattanDistanceHeristic());
                 break;
             default:
-                rootNode = new PuzzleBoardNode(puzzleBoardModel,0,null, new UnorderedBlocksHeuristic());
-                targetNode = new PuzzleBoardNode(targetPuzzleBoardModel,0,null, new UnorderedBlocksHeuristic());
+                rootNode = new PuzzleBoardNode(puzzleBoardModel, 0, null, new UnorderedBlocksHeuristic());
+                targetNode = new PuzzleBoardNode(targetPuzzleBoardModel, 0, null, new UnorderedBlocksHeuristic());
                 break;
         }
 
@@ -69,13 +68,11 @@ public class GameModel {
         searchStat = informativeSearch.search();
 
         if (searchStat != null && !searchStat.isNodesLimitError()) {
-            lastComputationFailFlag = false;
             PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
             if (informativeSearchResultNode != null) {
                 puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
             }
         } else {
-            lastComputationFailFlag = true;
         }
     }
 
@@ -148,37 +145,22 @@ public class GameModel {
         return puzzleBoardModel;
     }
 
-    public PuzzleBoardModel getTargetPuzzleBoardModel() {
-        return targetPuzzleBoardModel;
-    }
 
-    public HeuristicType getHeuristicType() {
-        return heuristicType;
-    }
 
     public void setHeuristicType(HeuristicType heuristicType) {
         this.heuristicType = heuristicType;
     }
 
-    public SearchType getSearchType() {
-        return searchType;
-    }
 
     public void setSearchType(SearchType searchType) {
         this.searchType = searchType;
     }
 
-    public MeshLevel getMeshLevel() {
-        return meshLevel;
-    }
 
     public void setMeshLevel(MeshLevel meshLevel) {
         this.meshLevel = meshLevel;
     }
 
-    public MeshType getMeshType() {
-        return meshType;
-    }
 
     public void setMeshType(MeshType meshType) {
         this.meshType = meshType;
@@ -186,14 +168,6 @@ public class GameModel {
 
     public SearchStat getSearchStat() {
         return searchStat;
-    }
-
-    public boolean isLastComputationFailFlag() {
-        return lastComputationFailFlag;
-    }
-
-    public void setLastComputationFailFlag(boolean lastComputationFailFlag) {
-        this.lastComputationFailFlag = lastComputationFailFlag;
     }
 
     public int getTimeLimit() {

@@ -7,8 +7,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class AStar extends InformativeSearch {
-    List<Node> openList;
-    List<Node> closedList;
+    private List<Node> openList;
+    private List<Node> closedList;
 
     public AStar(Node rootNode, Node targetNode, int nodesLimit) {
         super(rootNode, targetNode, nodesLimit);
@@ -19,7 +19,7 @@ public class AStar extends InformativeSearch {
 
     @Override
     public SearchStat search() {
-        Node currentNode = null;
+        Node currentNode;
         int nodesLimit = this.nodesLimit;
         while (!openList.isEmpty()) {
             currentNode = getLowestFCostAlgNode();

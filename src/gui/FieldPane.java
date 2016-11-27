@@ -21,6 +21,10 @@ class FieldPane extends StackPane {
     }
 
     void setNumber(int number) {
-        numberLabel.setText(Integer.toString(number));
+        String textToSet = "";
+        if (number != 0) {
+            textToSet = Integer.toString(number);
+        }
+        numberLabel.setText(textToSet);
     }
 }

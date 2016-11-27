@@ -3,9 +3,6 @@ package model.algorithm;
 import model.game.Block;
 import model.game.PuzzleBoardModel;
 
-/**
- * Created by przemek on 24.11.16.
- */
 public class ManhattanDistanceHeristic implements Heuristic {
     public int calculate(PuzzleBoardModel puzzleBoardModel) {
         int cost = 0;

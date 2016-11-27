@@ -63,7 +63,6 @@ class PuzzleBoardGrid implements Observer {
 
     @Override
     public void update(Observable observable, Object o) {
-        System.out.println("Updatin.");
         refreshBoard();
     }
 

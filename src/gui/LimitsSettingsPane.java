@@ -5,11 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import model.game.GameModel;
-import model.game.MeshLevel;
 
 class LimitsSettingsPane extends AnchorPane {
-    private VBox timeLimitSettingsPane;
-    private VBox nodeLimitSettingsPane;
     private GameModel gameModel;
 
     LimitsSettingsPane() {
@@ -27,11 +24,11 @@ class LimitsSettingsPane extends AnchorPane {
         meshSettingsPane.getColumnConstraints().addAll(firstColumnConstraints, secondColumnConstraints);
         AnchorPane.setRightAnchor(meshSettingsPane,5.0);
         AnchorPane.setLeftAnchor(meshSettingsPane,5.0);
-        timeLimitSettingsPane = createTimeLimitSettingPane();
+        VBox timeLimitSettingsPane = createTimeLimitSettingPane();
         timeLimitSettingsPane
                 .setStyle("-fx-border-color: black; -fx-border-width: 1 0 1 1; -fx-border-style: solid;");
         timeLimitSettingsPane.setPadding(new Insets(5,5,5,5));
-        nodeLimitSettingsPane = createNodeLimitSettingPane();
+        VBox nodeLimitSettingsPane = createNodeLimitSettingPane();
         nodeLimitSettingsPane
                 .setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-border-style: solid;");
         nodeLimitSettingsPane.setPadding(new Insets(5,5,5,5));
