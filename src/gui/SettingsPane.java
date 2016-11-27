@@ -10,9 +10,15 @@ import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
+/**
+ * Pole ze wszystkimi ustawieniami dotyczącymi układanki.
+ */
 class SettingsPane extends GridPane {
     private final ToggleGroup toggleGroup = new ToggleGroup();
 
+    /**
+     * Domyślny konstruktor. Tworzy odpowiednie pod-pola.
+     */
     SettingsPane() {
         ColumnConstraints columnConstraints = new ColumnConstraints();
         columnConstraints.setPercentWidth(100);
@@ -32,6 +38,10 @@ class SettingsPane extends GridPane {
         add(boardDomensionRadioGroupPane,0,3);
     }
 
+    /**
+     * Tworzy pole ustawiające wymiar układanki.
+     * @return Gotowe pole z kontrolkami.
+     */
     private VBox createBoardDimensionRadioGroupPane() {
         final String x3Dimension = "3x3";
         final String x4Dimension = "4x4";
@@ -71,6 +81,10 @@ class SettingsPane extends GridPane {
         return mainPane;
     }
 
+    /**
+     * Getter grupy przycisków ustawiających ukłdankę.
+     * @return Grupa przycisków.
+     */
     ToggleGroup getToggleGroup() {
         return toggleGroup;
     }

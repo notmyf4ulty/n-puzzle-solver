@@ -10,7 +10,7 @@ public class GameModel {
     private HeuristicType heuristicType;
     private SearchType searchType;
     private MeshLevel meshLevel;
-    private SearchStat searchStat;
+    private volatile SearchStat searchStat;
     private int timeLimit;
     private int nodeLimit;
 
@@ -70,6 +70,7 @@ public class GameModel {
             PuzzleBoardNode informativeSearchResultNode = (PuzzleBoardNode) searchStat.getFinishNode();
             if (informativeSearchResultNode != null) {
                 puzzleBoardModel.setBoard(informativeSearchResultNode.getPuzzleBoardModel().getCopyBoard());
+                int kele = 0;
             }
         }
     }

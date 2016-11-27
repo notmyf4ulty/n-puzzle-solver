@@ -13,6 +13,7 @@ public class SearchStat {
             this.finishNode = node;
             this.pathDepth = searchParent(node);
             this.visitedNodesNumber = visitedNodesNumber;
+            copyRootParent();
         } else {
             nodesLimitError = true;
         }
@@ -41,6 +42,15 @@ public class SearchStat {
             }
         }
         return path;
+    }
+
+    private void copyRootParent() {
+        Node finishNode = this.finishNode;
+        while (finishNode.hasParent()) {
+            finishNode = finishNode.getParent();
+        }
+        PuzzleBoardNode finishPuzzleBoardNode = (PuzzleBoardNode) finishNode;
+        finishPuzzleBoardNode.setPuzzleBoardModel(finishPuzzleBoardNode.getPuzzleBoardModel().getCopy());
     }
 
     private String getNodeEmptyBlockPosition(Node node) {

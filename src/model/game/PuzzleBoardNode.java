@@ -62,4 +62,8 @@ class PuzzleBoardNode extends Node {
     PuzzleBoardModel getPuzzleBoardModel() {
         return puzzleBoardModel;
     }
+
+    void setPuzzleBoardModel(PuzzleBoardModel puzzleBoardModel) {
+        this.puzzleBoardModel = puzzleBoardModel;
+    }
 }

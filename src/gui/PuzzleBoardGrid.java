@@ -10,11 +10,31 @@ import model.game.PuzzleBoardModel;
 import java.util.Observable;
 import java.util.Observer;
 
+/**
+ * Siatka będąca odzwierciedleniem modelu układanki. Implementuje wzorzec projektowy typu "Obserwator" w celu
+ * aktualizacji zmian zachodzących w modelu.
+ */
 class PuzzleBoardGrid implements Observer {
+
+    /**
+     * Główne pole przechowujące planszę.
+     */
     private AnchorPane mainPane;
+
+    /**
+     * Graficzna reprezentacja planszy.
+     */
     private GridPane board;
+
+    /**
+     * Model układanki, który będzie obserwowany.
+     */
     private PuzzleBoardModel puzzleBoardModel;
 
+    /**
+     * Domyślny konstruktor. Pobiera model układanki z modelu gry, który następnie przypisany zostanie do
+     * graficznej reprezentacji.
+     */
     PuzzleBoardGrid() {
         puzzleBoardModel = GameModel.getInstance().getPuzzleBoardModel();
         puzzleBoardModel.addObserver(this);
@@ -23,6 +43,10 @@ class PuzzleBoardGrid implements Observer {
         mainPane.getChildren().add(board);
     }
 
+    /**
+     * Tworzy nową planszę. Pobiera model układanki i dla każdego bloczku tworzy jego graficzną reprezentację.
+     * @return Graficzna reprezentacja planszy.
+     */
     private GridPane generateNewBoard() {
         GridPane board = new GridPane();
         Block[][] boardModel = puzzleBoardModel.getBoard();
@@ -35,6 +59,9 @@ class PuzzleBoardGrid implements Observer {
         return board;
     }
 
+    /**
+     * Odświeża planszę. Przebiega po wszystkich bloczkach modelu układanki i przypisuje do swoich pól nowe numery.
+     */
     private void refreshBoard() {
         Block[][] boardModel = puzzleBoardModel.getBoard();
         for (Block[] blocks : boardModel) {
@@ -47,6 +74,11 @@ class PuzzleBoardGrid implements Observer {
         }
     }
 
+    /**
+     * Pobiera pole o odpowiednim numerze.
+     * @param position Pozycja pola.
+     * @return Pole o danym numerze.
+     */
     private FieldPane getFieldPane(Position position) {
         int columnIndex = position.getX();
         int rowIndex = position.getY();
@@ -60,12 +92,18 @@ class PuzzleBoardGrid implements Observer {
         return null;
     }
 
-
+    /**
+     * Przeciążona metoda interfejsu Observer.
+     */
     @Override
     public void update(Observable observable, Object o) {
         refreshBoard();
     }
 
+    /**
+     * Pobiera główne pole.
+     * @return Główne pole.
+     */
     AnchorPane getMainPane() {
         return mainPane;
     }
